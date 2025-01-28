@@ -7,7 +7,7 @@ function App() {
   return (
    <BrowserRouter>
     <Routes>
-      <Route path="/" elemeent={<Navigate to="/admin-dashboard" />} />
+      <Route path="/" element={<Navigate to="/login" />} />
       <Route path="/login" element={<Login />} />
       <Route path="/admin-dashboard" element={<AdminDashboard />} />
       <Route path="/employee-dashboard" element={<EmployeeDashboard />} />

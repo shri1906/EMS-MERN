@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext.jsx";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -27,7 +27,7 @@ const Login = () => {
         if(response.data.user.role == "admin"){
           navigate('/admin-dashboard')
         } else{
-          navigate('employee-dashboard')
+          navigate('/employee-dashboard')
         }
       }
     } catch (error) {
