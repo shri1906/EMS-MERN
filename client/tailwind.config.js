@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily:{
-        "pacifico" : ["Pacifico", "sans-serif"]
+        "anton" : ["Anton", "sans-serif"]
       }
     },
   },

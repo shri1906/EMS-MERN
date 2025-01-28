@@ -1,10 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 const userContext = createContext();
 const AuthContext = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading,setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const verifyUser = async () => {
@@ -23,15 +24,15 @@ const AuthContext = ({ children }) => {
             setUser(response.data.user);
           }
         } else {
-          setUser(null)
+          setUser(null);
+          setLoading(false);
         }
       } catch (error) {
         if (error.response && !error.response.data.error) {
-          setUser(null)
+          setUser(null);
         }
-      }
-      finally{
-        setLoading(false)
+      } finally {
+        setLoading(false);
       }
     };
     verifyUser();
@@ -52,5 +53,9 @@ const AuthContext = ({ children }) => {
   );
 };
 
+// PropTypes validation for children
+AuthContext.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 export const useAuth = () => useContext(userContext);
 export default AuthContext;
