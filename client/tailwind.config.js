@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        "pacifico" : ["Pacifico", "sans-serif"]
+      }
+    },
   },
   plugins: [],
 }

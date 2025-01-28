@@ -3,7 +3,7 @@ import bcrypt from "bcrypt"
 import connectToDatabse from "./db/db.js"
 
 const userRegister = async () => {
-    connectToDatabse();
+    connectToDatabase();
     try {
         const hashPassword = await bcrypt.hash("admin", 10)
         const newUser = new User({
