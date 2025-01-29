@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const PrivateRoutes = ({ children }) => {
   const { user, loading } = useAuth();
   if (loading) {
-    <div>Loading...</div>;
+    return <div>Loading...</div>;
   }
   return user ? children : <Navigate to="/login" />;
 };

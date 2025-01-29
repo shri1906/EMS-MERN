@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 const RoleBaseRoutes = ({children, requiredRole}) => {
     const {user, loading} = useAuth()
     if(loading){
-     <div>Loading...</div>
+     return <div>Loading...</div>
     }
     if(!requiredRole.includes(user.role)){
         <Navigate to="/unauthorized" />
