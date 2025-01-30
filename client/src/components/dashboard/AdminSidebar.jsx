@@ -22,12 +22,13 @@ const AdminSidebar = () => {
               isActive ? "bg-teal-500" : " "
             } flex items-center space-x-2 py-2.5 px-4  rounded`
           }
+          end
         >
           <FaTachometerAlt />
           <span>Dashboard</span>
         </NavLink>
         <NavLink
-          to="/employees"
+          to="/admin-dashboard/employees"
           className={({ isActive }) =>
             `${
               isActive ? "bg-teal-500" : " "
@@ -38,7 +39,7 @@ const AdminSidebar = () => {
           <span>Employees</span>
         </NavLink>
         <NavLink
-          to="/departments"
+          to="/admin-dashboard/departments"
           className={({ isActive }) =>
             `${
               isActive ? "bg-teal-500" : " "
@@ -49,7 +50,7 @@ const AdminSidebar = () => {
           <span>Departments</span>
         </NavLink>
         <NavLink
-          to="/leaves"
+          to="/admin-dashboard/leaves"
           className={({ isActive }) =>
             `${
               isActive ? "bg-teal-500" : " "
@@ -60,7 +61,7 @@ const AdminSidebar = () => {
           <span>Leaves</span>
         </NavLink>
         <NavLink
-          to="/salaries"
+          to="/admin-dashboard/salaries"
           className={({ isActive }) =>
             `${
               isActive ? "bg-teal-500" : " "
@@ -71,7 +72,7 @@ const AdminSidebar = () => {
           <span>Salary</span>
         </NavLink>
         <NavLink
-          to="/settings"
+          to="/admin-dashboard/settings"
           className={({ isActive }) =>
             `${
               isActive ? "bg-teal-500" : " "
