@@ -1,4 +1,15 @@
-import Department from "../models/Department";
+import Department from "../models/Department.js";
+
+const getDepartments = async () => {
+  try {
+    const departments = await Department.find();
+    return res.status(200).json({ success: true, departments });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ success: false, error: "Unable to fetch departments!" });
+  }
+};
 
 const addDepartment = async (req, res) => {
   try {
@@ -16,4 +27,4 @@ const addDepartment = async (req, res) => {
   }
 };
 
-export { addDepartment };
+export { addDepartment, getDepartments };
