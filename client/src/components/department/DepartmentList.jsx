@@ -7,6 +7,12 @@ import axios from "axios";
 const DepartmentList = () => {
   const [departments, setDepartments] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const onDepartmentDelete = async (id) => {
+    const data = departments.filter((dep) => dep._id !== id);
+    setDepartments(data);
+  };
+
   useEffect(() => {
     const fetchDepartments = async () => {
       setLoading(true);
@@ -64,7 +70,7 @@ const DepartmentList = () => {
             </Link>
           </div>
           <div className="mt-5">
-            <DataTable columns={columns} data={departments} />
+            <DataTable columns={columns} data={departments} onDepartmentDelete={onDepartmentDelete} />
           </div>
         </div>
       )}
