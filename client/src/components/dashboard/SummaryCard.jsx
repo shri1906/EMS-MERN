@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 
 const SummaryCard = ({ icon, text, number, color }) => {
   return (
@@ -13,12 +12,6 @@ const SummaryCard = ({ icon, text, number, color }) => {
     </div>
   );
 };
-// PropTypes validation for children
-SummaryCard.propTypes = {
-  icon: PropTypes.node.isRequired,
-  text: PropTypes.node.isRequired,
-  number: PropTypes.node.isRequired,
-  color: PropTypes.node.isRequired,
-};
+
 
 export default SummaryCard;

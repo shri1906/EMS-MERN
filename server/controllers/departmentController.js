@@ -1,6 +1,6 @@
 import Department from "../models/Department.js";
 
-const getDepartments = async () => {
+const getDepartments = async (req, res) => {
   try {
     const departments = await Department.find();
     return res.status(200).json({ success: true, departments });

@@ -5,10 +5,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const DepartmentList = () => {
-  const [departments, setDepartments] = useState(null);
-
+  const [departments, setDepartments] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchDepartments = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(
           "http://localhost:3000/api/department",
@@ -24,41 +25,50 @@ const DepartmentList = () => {
             _id: dep._id,
             sno: sno++,
             dep_name: dep.dep_name,
-            action: <DepartmentButtons />,
+            action: <DepartmentButtons _id={dep._id} />,
           }));
-          setDepartments(data)
+          setDepartments(data);
         }
       } catch (error) {
         if (error.response && !error.repsonse.data.success) {
           alert(error.repsonse.data.error);
         }
+      } finally {
+        setLoading(false);
       }
     };
+
     fetchDepartments();
   }, []);
 
   return (
-    <div className="p-5">
-      <div className="text-center">
-        <h3 className="text-2xl font-bold">Manage Department</h3>
-      </div>
-      <div className="flex justify-between items-center">
-        <input
-          type="text"
-          placeholder="Search By Department..."
-          className="px-4 py-1 border rounded"
-        />
-        <Link
-          to="/admin-dashboard/add-department"
-          className="px-4 py-1 text-white bg-teal-600 rounded"
-        >
-          Add New Department
-        </Link>
-      </div>
-      <div>
-        <DataTable columns={columns} data={departments} />
-      </div>
-    </div>
+    <>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <div className="p-5">
+          <div className="text-center">
+            <h3 className="text-2xl font-bold">Manage Department</h3>
+          </div>
+          <div className="flex justify-between items-center">
+            <input
+              type="text"
+              placeholder="Search By Department..."
+              className="px-4 py-1 border rounded"
+            />
+            <Link
+              to="/admin-dashboard/add-department"
+              className="px-4 py-1 text-white bg-teal-600 rounded"
+            >
+              Add New Department
+            </Link>
+          </div>
+          <div className="mt-5">
+            <DataTable columns={columns} data={departments} />
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
