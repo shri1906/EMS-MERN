@@ -19,10 +19,10 @@ const DepartmentList = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/department",
+          "http://localhost:5000/api/department",
           {
             headers: {
-              Authorization: `Beare ${localStorage.getItem("token")}`,
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           }
         );
@@ -32,7 +32,7 @@ const DepartmentList = () => {
             _id: dep._id,
             sno: sno++,
             dep_name: dep.dep_name,
-            action: <DepartmentButtons _id={dep._id} />,
+            action: <DepartmentButtons _id={dep._id} onDepartmentDelete={onDepartmentDelete} />,
           }));
           setDepartments(data);
           setFilteredData(data);
