@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { fetchDepartments } from "../../utils/EmployeeHelper";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddEmployee = () => {
   const [departments, setDepartments] = useState([]);
   const [formData, setFormData] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getDepartments = async () => {
@@ -23,27 +25,34 @@ const AddEmployee = () => {
     }
   };
 
-  const handleSubmit = async(e) =>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const formDataObj = new FormData();
+    Object.keys(formData).forEach((key) => {
+      formDataObj.append(key, formData[key]);
+    });
     try {
-        const response = await axios.post(
-          "http://localhost:5000/api/department/add",
-          department,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
-        if (response.data.success) {
-          navigate("/admin-dashboard/departments");
+      const response = await axios.post(
+        "http://localhost:5000/api/employee/add",
+        formDataObj,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "multipart/form-data",
+          },
         }
-      } catch (error) {
-        if (error.response && !error.response.data.success) {
-          alert(error.repsonse.data.error);
-        }
+      );
+      if (response.data.success) {
+        navigate("/admin-dashboard/employees");
       }
-  }
+    } catch (error) {
+      if (error.response && !error.response.data.success) {
+        alert(error.response?.data?.error || "An error occurred");
+
+      }
+    }
+  };
   return (
     <div className="max-w-4xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md">
       <h2 className="text-2xl font-bold mb-6">Add New Employee</h2>
@@ -72,7 +81,7 @@ const AddEmployee = () => {
               type="email"
               name="email"
               onChange={handleChange}
-              placeholder="Enter EMail"
+              placeholder="Enter Email"
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
               required
             />
