@@ -2,7 +2,7 @@ import Employee from "../models/Employee.js";
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import multer from "multer";
-import path from "path"
+import path from "path";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -17,15 +17,16 @@ const upload = multer({ storage: storage });
 
 const getEmployees = async (req, res) => {
   try {
-    const departments = await Employee.find();
-    return res.status(200).json({ success: true, departments });
+    const employees = await Employee.find()
+      .populate("userId", { password: 0 })
+      .populate("department");
+    return res.status(200).json({ success: true, employees });
   } catch (error) {
     return res
       .status(500)
       .json({ success: false, error: "Unable to fetch Employees Data!" });
   }
 };
-
 
 const addEmployee = async (req, res) => {
   try {
@@ -42,15 +43,13 @@ const addEmployee = async (req, res) => {
       password,
       role,
     } = req.body;
-
+    // console.log(req.body)
     const user = await User.findOne({ email });
     if (user) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          error: "User already registered in employee!!",
-        });
+      return res.status(400).json({
+        success: false,
+        error: "User already registered in employee!!",
+      });
     }
     const hashPassword = await bcrypt.hash(password, 10);
 
