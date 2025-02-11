@@ -31,8 +31,8 @@ export const columns = [
   },
   {
     name: "Action",
-    selector: (row) => row.action,
-    center: true
+    cell: (row) => row.action,
+    center: "true"
   },
 ];
 
@@ -62,7 +62,7 @@ export const EmployeeButtons = ({ Id }) => {
     <div className="flex space-x-3">
       <button
         className="px-3 py-1 bg-teal-600 text-white rounded"
-        onClick={() => navigate(`admin-dashboard/employees/${Id}`)}
+        onClick={() => navigate(`/admin-dashboard/employees/${Id}`)}
       >
         View
       </button>

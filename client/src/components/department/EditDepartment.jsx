@@ -7,6 +7,7 @@ const EditDepartment = () => {
   const [department, setDepartment] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchDepartments = async () => {
       setLoading(true);
@@ -15,7 +16,7 @@ const EditDepartment = () => {
           `http://localhost:5000/api/department/${id}`,
           {
             headers: {
-              Authorization: `Beare ${localStorage.getItem("token")}`,
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           }
         );

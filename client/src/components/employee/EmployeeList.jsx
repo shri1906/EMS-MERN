@@ -28,11 +28,11 @@ const EmployeeList = () => {
               sno: sno++,
               dep_name: emp.department.dep_name,
               name: emp.userId.name,
-              dob: new Date(emp.dob).toDateString(),
+              dob: new Date(emp.dob).toLocaleDateString(),
               profileImage: <img
               src={`http://localhost:5000/uploads/${emp.userId.profileImage}`}
               alt="Profile"
-              className="w-12 h-12 rounded-full"
+              className="w-10 h-10 rounded-full"
             />,
               action: <EmployeeButtons Id={emp._id}  />,
             }));
@@ -69,8 +69,8 @@ const EmployeeList = () => {
               Add New Employee
             </Link>
           </div>
-          <div className='p-2'>
-            <DataTable columns={columns} data={employees} />
+          <div className='pt-4'>
+            <DataTable  columns={columns} data={employees} />
           </div>
     </div>
   )
