@@ -48,29 +48,29 @@ const ViewEmployee = () => {
             <div>
               <div className="flex space-x-3 mb-5">
                 <p className="text-lg font-bold">Name:</p>
-                <p className="font-medium">{employee.userId.name}</p>
+                <p className="font-medium mt-0.5">{employee.userId.name}</p>
               </div>
               <div className="flex space-x-3 mb-5">
                 <p className="text-lg font-bold">Employee ID:</p>
-                <p className="font-medium">{employee.employeeId}</p>
+                <p className="font-medium mt-0.5">{employee.employeeId}</p>
               </div>
               <div className="flex space-x-3 mb-5">
                 <p className="text-lg font-bold">Date of Birth:</p>
-                <p className="font-medium">
-                  {new Date(employee.dob).toLocaleDateString()}
+                <p className="font-medium mt-0.5">
+                  {new Date(employee.dob).toDateString()}
                 </p>
               </div>
               <div className="flex space-x-3 mb-5">
                 <p className="text-lg font-bold">Gender:</p>
-                <p className="font-medium">{employee.gender}</p>
+                <p className="font-medium mt-0.5">{employee.gender}</p>
               </div>
               <div className="flex space-x-3 mb-5">
                 <p className="text-lg font-bold">Department:</p>
-                <p className="font-medium">{employee.department.dep_name}</p>
+                <p className="font-medium mt-0.5">{employee.department.dep_name}</p>
               </div>
               <div className="flex space-x-3 mb-5">
                 <p className="text-lg font-bold">Marital Status:</p>
-                <p className="font-medium">{employee.maritalStatus}</p>
+                <p className="font-medium mt-0.5">{employee.maritalStatus}</p>
               </div>
             </div>
           </div>
