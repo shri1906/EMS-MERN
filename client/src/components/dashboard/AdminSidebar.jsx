@@ -61,7 +61,7 @@ const AdminSidebar = () => {
           <span>Leaves</span>
         </NavLink>
         <NavLink
-          to="/admin-dashboard/salaries"
+          to="/admin-dashboard/salary/add"
           className={({ isActive }) =>
             `${
               isActive ? "bg-teal-500" : " "
