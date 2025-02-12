@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
 const AddSalary = () => {
-  const [employee, setEmployee] = useState({
+  const [salary, setSalary] = useState({
     employeeId: null,
     basicSalary: 0,
     allowances: 0,
@@ -12,7 +12,7 @@ const AddSalary = () => {
     payDate: null,
   });
   const [departments, setDepartments] = useState(null);
-  const [employees, setEmployees] = useState(null);
+  const [employees, setEmployees] = useState([]);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -47,7 +47,6 @@ const AddSalary = () => {
           }));
         }
       } catch (error) {
-        console.log(error.repsonse.data.error);
         if (error.response && !error.repsonse.data.success) {
           alert(error.repsonse.data.error);
         }
@@ -58,7 +57,7 @@ const AddSalary = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEmployee((prevData) => ({ ...prevData, [name]: value }));
+    setSalary((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleDepartment = async (e) => {
@@ -72,7 +71,7 @@ const AddSalary = () => {
     try {
       const response = await axios.post(
         `http://localhost:5000/api/salary/add`,
-        employee,
+        salary,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -90,7 +89,7 @@ const AddSalary = () => {
   };
   return (
     <>
-      {departments && employee ? (
+      {departments ? (
         <div className="max-w-4xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md">
           <h2 className="text-2xl font-bold mb-6">Add Salary</h2>
           <form onSubmit={handleSubmit}>
