@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const ViewSalary = () => {
-  const [salaries, setSalaries] = useState(null);
+  const [salaries, setSalaries] = useState([]);
   const [filteredSalaries, setFilteredSalaries] = useState(null);
   const { id } = useParams();
   let sno = 1;
@@ -14,7 +14,6 @@ const ViewSalary = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      console.log(response.data);
       if (response.data.success) {
         setSalaries(response.data.salary);
         setFilteredSalaries(response.data.salary);
@@ -30,10 +29,10 @@ const ViewSalary = () => {
     fetchSalaries();
   }, []);
 
-  const filterSalaries = (q) => {
-    const filteredRecords = salaries.filter((leave) => {
-      leave.employeeId.toLowerCase().includes(q.toLowerCase());
-    });
+  const filterSalaries = (e) => {
+    const filteredRecords = salaries.filter((emp) => 
+      emp.employeeId.toLowerCase().includes(e.target.value.toLowerCase())
+    );
     setFilteredSalaries(filteredRecords);
   };
 
@@ -54,7 +53,7 @@ const ViewSalary = () => {
               onChange={filterSalaries}
             />
           </div>
-          {filteredSalaries.lentgh > 0 ? (
+          {filteredSalaries.length > 0 ? (
             <table className="w-full text-sm text-left text-gray-500">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 border border-gray-200">
                 <tr>
@@ -68,17 +67,17 @@ const ViewSalary = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredSalaries.map((salary) => (
+                {filteredSalaries.map((salary,idx) => (
                   <tr
-                    key={salary.id}
-                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    key={idx}
+                    className="bg-white border-b"
                   >
                     <td className="px-6 py-3">{sno++}</td>
                     <td className="px-6 py-3">
                       {salary.employeeId.employeeId}
                     </td>
                     <td className="px-6 py-3">{salary.basicSalary}</td>
-                    <td className="px-6 py-3">{salary.allowance}</td>
+                    <td className="px-6 py-3">{salary.allowances}</td>
                     <td className="px-6 py-3">{salary.deductions}</td>
                     <td className="px-6 py-3">{salary.netSalary}</td>
                     <td className="px-6 py-3">
@@ -89,7 +88,7 @@ const ViewSalary = () => {
               </tbody>
             </table>
           ) : (
-            <div>No records found</div>
+            <div className="text-center mt-4 text-xl">No records found</div>
           )}
         </div>
       )}

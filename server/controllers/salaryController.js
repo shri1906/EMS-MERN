@@ -31,7 +31,7 @@ const getSalary = async (req, res) => {
       "employeeId",
       "employeeId"
     );
-    return res.status(200).json({ success: true });
+    return res.status(200).json({ success: true, salary });
   } catch (error) {
     return res
       .status(500)
