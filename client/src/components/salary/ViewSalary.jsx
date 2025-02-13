@@ -9,7 +9,7 @@ const ViewSalary = () => {
   let sno = 1;
   const fetchSalaries = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/salary/${id}`, {
+      const response = await axios.get(`http://localhost:5000/api/salary/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -32,7 +32,7 @@ const ViewSalary = () => {
 
   const filterSalaries = (q) => {
     const filteredRecords = salaries.filter((leave) => {
-      leave.employeeId.toLocaleLowerCase().includes(q.toLocaleLowerCase());
+      leave.employeeId.toLowerCase().includes(q.toLowerCase());
     });
     setFilteredSalaries(filteredRecords);
   };
@@ -54,7 +54,7 @@ const ViewSalary = () => {
               onChange={filterSalaries}
             />
           </div>
-          {filteredSalaries.lenght > 0 ? (
+          {filteredSalaries.lentgh > 0 ? (
             <table className="w-full text-sm text-left text-gray-500">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 border border-gray-200">
                 <tr>

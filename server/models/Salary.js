@@ -8,7 +8,7 @@ const salarySchema = new Schema({
   netSalary: { type: Number },
   payDate: { type: Date, required: true },
   createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, defalut: Date.now },
+  updatedAt: { type: Date, default: Date.now },
 });
 
 const Salary = mongoose.model("Salary", salarySchema);
