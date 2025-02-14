@@ -6,6 +6,6 @@ import { addLeave } from "../controllers/leaveController.js";
 const router = express.Router();
 
 router.post("/add", authMiddleware, addLeave);
-// router.get("/:id", authMiddleware, getSalary);
+router.get("/:id", authMiddleware, getSalary);
 
 export default router;
