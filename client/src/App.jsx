@@ -82,6 +82,7 @@ function App() {
           }
         >
           <Route index element={<Summary />}></Route>
+          <Route path="/employee-dashboard/profile/:id" element={<ViewEmployee />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
