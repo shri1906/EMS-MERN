@@ -16,7 +16,7 @@ const addSalary = async (req, res) => {
       payDate,
     });
     await newSalary.save();
-    return res.status(200).json({ success: true, meassage: "Salary added!" });
+    return res.status(200).json({ success: true, message: "Salary added!" });
   } catch (error) {
     return res
       .status(500)

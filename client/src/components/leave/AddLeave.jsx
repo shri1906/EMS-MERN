@@ -1,20 +1,45 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddLeave = () => {
   const { user } = useAuth();
   const [leave, setLeave] = useState({
     userId: user._id,
-    
+    leaveType: "",
+    startDate: "",
+    endDate: "",
+    reason: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLeave((prevState) => ({ ...prevState, [name]: value }));
   };
-  const handleSubmit = async() =>{
-    
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/api/leave/add`,
+        leave,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      if (response.data.success) {
+        navigate("/employee-dashboard/leaves");
+      }
+    } catch (error) {
+      console.log(error.repsonse.data.error);
+      if (error.response && !error.repsonse.data.success) {
+        alert(error.repsonse.data.error);
+      }
+    }
+  };
   return (
     <div className="max-w-4xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md">
       <h2 className="text-2xl font-bold mb-6">Request for Leave</h2>
