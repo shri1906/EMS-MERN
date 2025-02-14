@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
 import {
-  FaBuilding,
+
   FaCalendar,
   FaMoneyBillWave,
   FaTachometerAlt,
   FaTools,
-  FaUsers,
+  FaUser,
 } from "react-icons/fa";
 
 const Sidebar = () => {
@@ -35,7 +35,7 @@ const Sidebar = () => {
             } flex items-center space-x-2 py-2.5 px-4  rounded`
           }
         >
-          <FaUsers />
+          <FaUser />
           <span>My Profile</span>
         </NavLink>
         

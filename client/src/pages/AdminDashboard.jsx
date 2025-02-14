@@ -1,9 +1,8 @@
-import { Outlet } from "react-router-dom"
-import AdminSidebar from "../components/dashboard/AdminSidebar"
-import Navbar from "../components/dashboard/Navbar"
+import { Outlet } from "react-router-dom";
+import AdminSidebar from "../components/dashboard/AdminSidebar";
+import Navbar from "../components/dashboard/Navbar";
 
 const AdminDashboard = () => {
-  
   return (
     <div className="flex">
       <AdminSidebar />
@@ -12,7 +11,7 @@ const AdminDashboard = () => {
         <Outlet />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AdminDashboard
+export default AdminDashboard;
