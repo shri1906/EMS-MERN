@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
@@ -17,8 +17,9 @@ const LeaveList = () => {
           },
         }
       );
+      console.log(response.data)
       if (response.data.success) {
-        setLeaves(response.data.salary);
+        setLeaves(response.data.leaves);
       }
     } catch (error) {
       if (error.response && !error.response.data.success) {
@@ -49,7 +50,7 @@ const LeaveList = () => {
           Add Leave
         </Link>
       </div>
-      <div>
+      <div className="mt-6">
         <table className="w-full text-sm text-left text-gray-500">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 border border-gray-200">
             <tr>
@@ -63,7 +64,7 @@ const LeaveList = () => {
             </tr>
           </thead>
           <tbody>
-            {leaves.map((leave, idx) => (
+            {/* {leaves.map((leave, idx) => (
               <tr key={idx} className="bg-white border-b">
                 <td className="px-6 py-3">{sno++}</td>
                 <td className="px-6 py-3">{leave.leaveType}</td>
@@ -79,7 +80,7 @@ const LeaveList = () => {
                 </td>
                 <td className="px-6 py-3">{leave.status}</td>
               </tr>
-            ))}
+            ))} */}
           </tbody>
         </table>
       </div>
