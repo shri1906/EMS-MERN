@@ -11,7 +11,7 @@ const Setting = () => {
     userId: user._id,
     oldPassword: "",
     newPassword: "",
-    confirmPassowrd: "",
+    confirmPassword: "",
   });
 
   const handleChange = (e) => {
@@ -21,17 +21,22 @@ const Setting = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (setting.newPassword !== setting.confirmPassowrd) {
+    if (setting.newPassword !== setting.confirmPassword) {
       setError("Password Doesn't Macth!");
     } else {
       try {
-        const response = await axios.post("/setting/change-password", setting, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+        const response = await axios.put(
+          "http://localhost:5000/api/setting/change-password",
+          setting,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        console.log(response.data)
         if (response.data.sucess) {
-          navigate("/employee-dashboard/profile");
+          navigate("/admin-dashboard/employees");
           setError("");
         }
       } catch (error) {
@@ -52,7 +57,7 @@ const Setting = () => {
             Old Password
           </label>
           <input
-            type="text"
+            type="password"
             name="oldPassword"
             placeholder="Old Password"
             onChange={handleChange}
@@ -66,7 +71,7 @@ const Setting = () => {
             New Password
           </label>
           <input
-            type="text"
+            type="password"
             name="newPassword"
             placeholder="New Password"
             onChange={handleChange}
@@ -80,7 +85,7 @@ const Setting = () => {
             Confirm Password
           </label>
           <input
-            type="text"
+            type="password"
             name="confirmPassword"
             placeholder="Confirm Password"
             onChange={handleChange}
@@ -89,7 +94,10 @@ const Setting = () => {
           />
         </div>
         <div className="mb-4 mt-4">
-          <button type="submit" className="w-full bg-teal-600 text-white py-2">
+          <button
+            type="submit"
+            className="w-full bg-teal-600 text-white py-2 rounded"
+          >
             Change Password
           </button>
         </div>
