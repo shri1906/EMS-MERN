@@ -1,8 +1,46 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
+import axios from "axios";
 
 const Setting = () => {
-  const [error, setError] = useState("");
-  const handleSubmit = () => {};
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const [setting, setSetting] = useState({
+    userId: user._id,
+    oldPassword: "",
+    newPassword: "",
+    confirmPassowrd: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setSetting({ ...setting, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (setting.newPassword !== setting.confirmPassowrd) {
+      setError("Password Doesn't Macth!");
+    } else {
+      try {
+        const response = await axios.post("/setting/change-password", setting, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        if (response.data.sucess) {
+          navigate("/employee-dashboard/profile");
+          setError("");
+        }
+      } catch (error) {
+        if (error.response && !error.response.data.sucess) {
+          setError(error.response.data.error);
+        }
+      }
+    }
+  };
   return (
     <div className="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md w-96">
       <h2 className="text-2xl font-bold mb-6">Change Password</h2>
@@ -17,7 +55,9 @@ const Setting = () => {
             type="text"
             name="oldPassword"
             placeholder="Old Password"
-            className="w-full px-3 py-2 border rounded-md"
+            onChange={handleChange}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md"
+            required
           />
         </div>
         {/* New Password */}
@@ -29,7 +69,9 @@ const Setting = () => {
             type="text"
             name="newPassword"
             placeholder="New Password"
-            className="w-full px-3 py-2 border rounded-md"
+            onChange={handleChange}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md"
+            required
           />
         </div>
         {/* Confirm Password */}
@@ -41,17 +83,16 @@ const Setting = () => {
             type="text"
             name="confirmPassword"
             placeholder="Confirm Password"
-            className="w-full px-3 py-2 border rounded-md"
+            onChange={handleChange}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md"
+            required
           />
         </div>
         <div className="mb-4 mt-4">
-            <button
-              type="submit"
-              className="w-full bg-teal-600 text-white py-2"
-            >
-              Change Password
-            </button>
-          </div>
+          <button type="submit" className="w-full bg-teal-600 text-white py-2">
+            Change Password
+          </button>
+        </div>
       </form>
     </div>
   );
