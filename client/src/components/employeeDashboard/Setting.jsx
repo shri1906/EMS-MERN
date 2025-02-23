@@ -35,8 +35,8 @@ const Setting = () => {
           }
         );
         console.log(response.data)
-        if (response.data.sucess) {
-          navigate("/admin-dashboard/employees");
+        if (response.data.success) {
+          navigate(`/employee-dashboard/profile/${user._id}`);            
           setError("");
         }
       } catch (error) {
