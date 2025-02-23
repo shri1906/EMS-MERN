@@ -1,6 +1,4 @@
 import Leave from "../models/Leave.js";
-import Employee from "../models/Employee.js";
-import mongoose from "mongoose";
 
 const addLeave = async (req, res) => {
   try {
@@ -22,17 +20,15 @@ const addLeave = async (req, res) => {
   }
 };
 
-const getLeaves = async (req, res) => {
+const getLeavesById = async (req, res) => {
   try {
     const { id } = req.params;
     const leaves = await Leave.find({ employeeId: id }).populate("employeeId");
     if (!leaves) {
-      return res
-        .status(404)
-        .json({
-          success: false,
-          error: "No leaves found associated with this user",
-        });
+      return res.status(404).json({
+        success: false,
+        error: "No leaves found associated with this user",
+      });
     }
 
     return res.status(200).json({ success: true, leaves });
@@ -43,4 +39,22 @@ const getLeaves = async (req, res) => {
   }
 };
 
-export { addLeave, getLeaves };
+const getLeaves = async (req, res) => {
+  try {
+    const leaves = await Leave.find().populate({
+      path: "employeeId",
+      populate: [
+        { path: "department", select: "dep_name" },
+        { path: "userId", select: "name" },
+      ],
+    });
+console.log(leaves)
+    return res.status(200).json({ success: true, leaves });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ success: false, error: "Error in getting leave list!" });
+  }
+};
+
+export { addLeave, getLeavesById, getLeaves };

@@ -8,7 +8,7 @@ const AdminLeaveList = () => {
 
   const fetchLeaves = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/leaves", {
+      const response = await axios.get("http://localhost:5000/api/leave", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -39,30 +39,36 @@ const AdminLeaveList = () => {
     fetchLeaves();
   }, []);
   return (
-    <div className="p-6">
-      <div className="text-center">
-        <h3 className="text-2xl font-bold">Manage Leaves</h3>
-      </div>
-      <div className="flex justify-between items-center">
-        <input
-          type="text"
-          placeholder="Search..."
-          className="px-4 py-1 border rounded"
-        />
-        <div>
-          <button className="px-2 me-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded">
-            Pending
-          </button>
-          <button className="px-2 me-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded">
-            Approved
-          </button>
-          <button className="px-2 me-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded">
-            Rejected
-          </button>
+    <>
+      {leaves ? (
+        <div className="p-6">
+          <div className="text-center">
+            <h3 className="text-2xl font-bold">Manage Leaves</h3>
+          </div>
+          <div className="flex justify-between items-center">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="px-4 py-1 border rounded"
+            />
+            <div>
+              <button className="px-2 me-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded">
+                Pending
+              </button>
+              <button className="px-2 me-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded">
+                Approved
+              </button>
+              <button className="px-2 me-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded">
+                Rejected
+              </button>
+            </div>
+          </div>
+          <DataTable columns={columns} data={leaves} pagination />
         </div>
-      </div>
-      <DataTable columns={columns} data={leaves} pagination />
-    </div>
+      ) : (
+        <div>Loading...</div>
+      )}
+    </>
   );
 };
 
