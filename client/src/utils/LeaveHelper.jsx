@@ -39,14 +39,13 @@ export const columns = [
   {
     name: "Action",
     selector: (row) => row.action,
-    center: true,
   },
 ];
 export const LeaveButtons = ({ Id }) => {
   const navigate = useNavigate();
 
   const handleView = (id) => {
-    navigate(`/admin-dashboard/leave/${Id}`);
+    // navigate(`/admin-dashboard/leave/${Id}`);
   };
 
   return (

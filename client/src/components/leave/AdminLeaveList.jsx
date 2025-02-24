@@ -21,9 +21,9 @@ const AdminLeaveList = () => {
           employeeId: leave.employeeId.employeeId,
           name: leave.employeeId.userId.name,
           leaveType: leave.leaveType,
-          department: leave.employeeId.department.name,
+          department: leave.employeeId.department.dep_name,
           days:
-            new Date(leave.endDate).getDate() - new Date(startDate).getDate(),
+            new Date(leave.endDate).getDate() - new Date(leave.startDate).getDate(),
           status: leave.status,
           action: <LeaveButtons Id={leave._id} />,
         }));
@@ -45,7 +45,7 @@ const AdminLeaveList = () => {
           <div className="text-center">
             <h3 className="text-2xl font-bold">Manage Leaves</h3>
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center mb-6">
             <input
               type="text"
               placeholder="Search..."
