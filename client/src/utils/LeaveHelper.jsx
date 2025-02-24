@@ -9,22 +9,22 @@ export const columns = [
   {
     name: "Emp ID",
     selector: (row) => row.employeeId,
-    width: "120px",
+    width: "160px",
   },
   {
     name: "Name",
     selector: (row) => row.name,
-    width: "120px",
+    width: "160px",
   },
   {
     name: "Leave Type",
     selector: (row) => row.leaveType,
-    width: "140px",
+    width: "200px",
   },
   {
     name: "Department",
     selector: (row) => row.department,
-    width: "170px",
+    width: "200px",
   },
   {
     name: "Days",
