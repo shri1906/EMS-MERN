@@ -24,15 +24,14 @@ const addLeave = async (req, res) => {
 const getLeavesById = async (req, res) => {
   try {
     const { id } = req.params;
-    const employee = await Employee.findOne({ userId: id });
-    const leaves = await Leave.find({ employeeId: employee._id });
-    if (!leaves) {
-      return res.status(404).json({
-        success: false,
-        error: "No leaves found associated with this user",
-      });
+    let leaves;
+    leaves = await Leave.find({ employeeId: id }); //for admin
+    if (leaves.length === 0) {
+      const employee = await Employee.findOne({ userId: id });
+      if(employee){
+        leaves = await Leave.find({ employeeId: employee._id }); //for users 
+      }
     }
-
     return res.status(200).json({ success: true, leaves });
   } catch (error) {
     return res

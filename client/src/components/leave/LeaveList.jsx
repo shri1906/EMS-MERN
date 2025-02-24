@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 const LeaveList = () => {
@@ -8,12 +8,13 @@ const LeaveList = () => {
   const [leaves, setLeaves] = useState([]);
   const [loading, setLoading] = useState(false); // Loading state
   let sno = 1;
+  const { id } = useParams();
 
   const fetchLeaves = async () => {
     try {
       setLoading(true); // Start loading
       const response = await axios.get(
-        `http://localhost:5000/api/leave/${user._id}`,
+        `http://localhost:5000/api/leave/${id}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -47,12 +48,14 @@ const LeaveList = () => {
           placeholder="Search..."
           className="px-4 py-1 border rounded"
         />
-        <Link
-          to="/employee-dashboard/add-leave"
-          className="px-4 py-1 text-white bg-teal-600 rounded"
-        >
-          Add Leave
-        </Link>
+        {user.role === "employee" && (
+          <Link
+            to="/employee-dashboard/add-leave"
+            className="px-4 py-1 text-white bg-teal-600 rounded"
+          >
+            Add Leave
+          </Link>
+        )}
       </div>
 
       <div className="mt-6">

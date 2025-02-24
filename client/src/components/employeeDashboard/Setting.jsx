@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/authContext";
+import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
 
 const Setting = () => {
@@ -36,7 +36,12 @@ const Setting = () => {
         );
         console.log(response.data)
         if (response.data.success) {
-          navigate(`/employee-dashboard/profile/${user._id}`);            
+          if(user.role === "employee"){
+            navigate(`/employee-dashboard/profile/${user._id}`);
+            return;            
+          }
+
+          navigate(`/admin-dashboard`)
           setError("");
         }
       } catch (error) {
