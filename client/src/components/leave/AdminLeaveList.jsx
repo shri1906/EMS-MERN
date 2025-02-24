@@ -5,7 +5,7 @@ import DataTable from "react-data-table-component";
 
 const AdminLeaveList = () => {
   const [leaves, setLeaves] = useState(null);
-
+  const [filteredLeaves, setFilteredleaves] = useState(null);
   const fetchLeaves = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/leave", {
@@ -23,11 +23,13 @@ const AdminLeaveList = () => {
           leaveType: leave.leaveType,
           department: leave.employeeId.department.dep_name,
           days:
-            new Date(leave.endDate).getDate() - new Date(leave.startDate).getDate(),
+            new Date(leave.endDate).getDate() -
+            new Date(leave.startDate).getDate(),
           status: leave.status,
           action: <LeaveButtons Id={leave._id} />,
         }));
         setLeaves(data);
+        setFilteredleaves(data);
       }
     } catch (error) {
       if (error.response && !error.repsonse.data.success) {
@@ -35,12 +37,27 @@ const AdminLeaveList = () => {
       }
     }
   };
+
+  const filterByInput = (e) => {
+    const data = leaves.filter((leave) =>
+      leave.employeeId.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setFilteredleaves(data);
+  };
+  const filterByButton = (status) => {
+    const data = leaves.filter((leave) =>
+      leave.status.toLowerCase().includes(status.toLowerCase())
+    );
+    setFilteredleaves(data);
+  };
+
   useEffect(() => {
     fetchLeaves();
   }, []);
+
   return (
     <>
-      {leaves ? (
+      {filteredLeaves ? (
         <div className="p-6">
           <div className="text-center">
             <h3 className="text-2xl font-bold">Manage Leaves</h3>
@@ -50,21 +67,31 @@ const AdminLeaveList = () => {
               type="text"
               placeholder="Search..."
               className="px-4 py-1 border rounded"
+              onChange={filterByInput}
             />
             <div>
-              <button className="px-2 me-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded">
+              <button
+                className="px-2 me-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded"
+                onClick={() => filterByButton("Pending")}
+              >
                 Pending
               </button>
-              <button className="px-2 me-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded">
+              <button
+                className="px-2 me-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded"
+                onClick={() => filterByButton("Approved")}
+              >
                 Approved
               </button>
-              <button className="px-2 me-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded">
+              <button
+                className="px-2 me-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded"
+                onClick={() => filterByButton("Rejected")}
+              >
                 Rejected
               </button>
             </div>
           </div>
           <div className="mt-4">
-          <DataTable columns={columns} data={leaves} pagination />
+            <DataTable columns={columns} data={filteredLeaves} pagination />
           </div>
         </div>
       ) : (
