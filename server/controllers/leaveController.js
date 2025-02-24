@@ -58,4 +58,22 @@ const getLeaves = async (req, res) => {
   }
 };
 
-export { addLeave, getLeavesById, getLeaves };
+const getLeavedetail = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const leave = await Leave.findById(id).populate({
+      path: "employeeId",
+      populate: [
+        { path: "department", select: "dep_name" },
+        { path: "userId", select: "name profileImage" },
+      ],
+    });
+    return res.status(200).json({ success: true, leave });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ success: false, error: "Error in getting leave list!" });
+  }
+};
+
+export { addLeave, getLeavesById, getLeaves, getLeavedetail };

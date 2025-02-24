@@ -45,13 +45,13 @@ export const LeaveButtons = ({ Id }) => {
   const navigate = useNavigate();
 
   const handleView = (id) => {
-    // navigate(`/admin-dashboard/leave/${Id}`);
+    navigate(`/admin-dashboard/leaves/${id}`);
   };
 
   return (
     <button
       className="px-4 py-1 bg-teal-600 rounded text-white hover:bg-teal-700"
-      onClick={handleView(Id)}
+      onClick={() => handleView(Id)}
     >
       View
     </button>

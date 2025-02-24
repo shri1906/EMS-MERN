@@ -19,6 +19,7 @@ import LeaveList from "./components/leave/LeaveList";
 import AddLeave from "./components/leave/AddLeave";
 import Setting from "./components/employeeDashboard/Setting";
 import AdminLeaveList from "./components/leave/AdminLeaveList";
+import LeaveDetails from "./components/leave/LeaveDetails";
 
 function App() {
   return (
@@ -77,6 +78,10 @@ function App() {
           <Route
             path="/admin-dashboard/leaves"
             element={<AdminLeaveList />}
+          ></Route>
+          <Route
+            path="/admin-dashboard/leaves/:id"
+            element={<LeaveDetails/>}
           ></Route>
         </Route>
 
