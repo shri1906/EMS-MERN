@@ -9,43 +9,44 @@ const DepartmentList = () => {
   const [loading, setLoading] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
 
-  const onDepartmentDelete = async (id) => {
-    const data = departments.filter((dep) => dep._id !== id);
-    setDepartments(data);
+  const onDepartmentDelete = () => {
+    fetchDepartments();
+  };
+
+  const fetchDepartments = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get("http://localhost:5000/api/department", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      if (response.data.success) {
+        let sno = 1;
+        const data = await response.data.departments.map((dep) => ({
+          _id: dep._id,
+          sno: sno++,
+          dep_name: dep.dep_name,
+          action: (
+            <DepartmentButtons
+              _id={dep._id}
+              onDepartmentDelete={onDepartmentDelete}
+            />
+          ),
+        }));
+        setDepartments(data);
+        setFilteredData(data);
+      }
+    } catch (error) {
+      if (error.response && !error.repsonse.data.success) {
+        alert(error.repsonse.data.error);
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    const fetchDepartments = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get(
-          "http://localhost:5000/api/department",
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
-        if (response.data.success) {
-          let sno = 1;
-          const data = await response.data.departments.map((dep) => ({
-            _id: dep._id,
-            sno: sno++,
-            dep_name: dep.dep_name,
-            action: <DepartmentButtons _id={dep._id} onDepartmentDelete={onDepartmentDelete} />,
-          }));
-          setDepartments(data);
-          setFilteredData(data);
-        }
-      } catch (error) {
-        if (error.response && !error.repsonse.data.success) {
-          alert(error.repsonse.data.error);
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchDepartments();
   }, []);
 
@@ -57,9 +58,9 @@ const DepartmentList = () => {
   };
   return (
     <>
-      {loading ? 
+      {loading ? (
         <div>Loading...</div>
-       : 
+      ) : (
         <div className="p-6">
           <div className="text-center">
             <h3 className="text-2xl font-bold">Manage Department</h3>
@@ -83,10 +84,11 @@ const DepartmentList = () => {
               columns={columns}
               data={filteredData}
               onDepartmentDelete={onDepartmentDelete}
+              pagination
             />
           </div>
         </div>
-      }
+      )}
     </>
   );
 };

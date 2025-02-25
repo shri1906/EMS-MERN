@@ -32,7 +32,7 @@ export const DepartmentButtons = ({ _id, onDepartmentDelete }) => {
           }
         );
         if (response.data.success) {
-          onDepartmentDelete(_id);
+          onDepartmentDelete();
         }
       } catch (error) {
         if (error.response && !error.repsonse.data.success) {
