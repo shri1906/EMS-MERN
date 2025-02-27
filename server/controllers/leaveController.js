@@ -5,6 +5,9 @@ const addLeave = async (req, res) => {
   try {
     const { userId, leaveType, startDate, endDate, reason } = req.body;
     const employee = await Employee.findOne({ userId });
+    if(!employee){
+      return res.status(404).json({success:false, error:"Employee Not found"})
+    }
     const newLeave = new Leave({
       employeeId: employee._id,
       leaveType,
