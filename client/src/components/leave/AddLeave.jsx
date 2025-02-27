@@ -34,9 +34,8 @@ const AddLeave = () => {
         navigate("/employee-dashboard/leaves");
       }
     } catch (error) {
-      console.log(error.repsonse.data.error);
       if (error.response && !error.repsonse.data.success) {
-        alert(error.repsonse.data.error);
+        alert(error.repsonse.data.error || "An error occured");
       }
     }
   };
