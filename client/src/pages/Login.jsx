@@ -2,11 +2,11 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
   const {login} = useAuth()
   const navigate = useNavigate()
 
@@ -21,7 +21,7 @@ const Login = () => {
         }
       );
       if (response.data.success) {
-        alert("Successfully Login!");
+        toast.success("Logged in Successfully!")
         login(response.data.user);
         localStorage.setItem("token", response.data.token)
         if(response.data.user.role == "admin"){
@@ -32,9 +32,7 @@ const Login = () => {
       }
     } catch (error) {
       if (error.response && !error.response.data.success) {
-        setError(error.response.data.error);
-      } else {
-        setError("Internal Server Error!");
+        toast.error(error.response.data.error);
       }
     }
   };
@@ -46,7 +44,6 @@ const Login = () => {
       </h2>
       <div className="border shadow p-6 w-80 bg-white">
         <h2 className="text-2xl font-bold mb-4">Login</h2>
-        {error && <p className="text-red-500">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="email" className="block text-gray-700">

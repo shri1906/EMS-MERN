@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchDepartments } from "../../utils/EmployeeHelper";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const EditEmployee = () => {
   const [employee, setEmployee] = useState({
@@ -34,7 +35,9 @@ const EditEmployee = () => {
             },
           }
         );
+        console.log(response.data)
         if (response.data.success) {
+
           const employee = response.data.employee;
           setEmployee((prev) => ({
             ...prev,
@@ -46,9 +49,8 @@ const EditEmployee = () => {
           }));
         }
       } catch (error) {
-        console.log(error.repsonse.data.error);
         if (error.response && !error.repsonse.data.success) {
-          alert(error.repsonse.data.error);
+          toast.error(error.repsonse.data.error);
         }
       }
     };
@@ -76,9 +78,10 @@ const EditEmployee = () => {
       if (response.data.success) {
         navigate("/admin-dashboard/employees");
       }
+      toast.success(response.data.message);
     } catch (error) {
       if (error.response && !error.response.data.success) {
-        alert(error.response?.data?.error || "An error occurred");
+        toast.error(error.response?.data?.error || "An error occurred");
       }
     }
   };

@@ -47,11 +47,20 @@ const editDepartment = async (req, res) => {
       dep_name,
       description,
     });
-    return res.status(200).json({ success: true, updateDep });
+    return res
+      .status(200)
+      .json({
+        success: true,
+        updateDep,
+        message: "Department Updated Successfully!",
+      });
   } catch (error) {
     return res
       .status(500)
-      .json({ success: false, error: "Unable to edit department!" });
+      .json({
+        success: false,
+        error: "Something went wrong while updating department!",
+      });
   }
 };
 

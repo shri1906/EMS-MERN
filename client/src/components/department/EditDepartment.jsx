@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const EditDepartment = () => {
   const { id } = useParams();
@@ -54,9 +55,10 @@ const EditDepartment = () => {
       if (response.data.success) {
         navigate("/admin-dashboard/departments");
       }
+      toast.success(response.data.message);
     } catch (error) {
       if (error.response && !error.response.data.success) {
-        alert(error.repsonse.data.error);
+        toast.error(error.repsonse.data.error);
       }
     }
   };
