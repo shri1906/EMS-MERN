@@ -20,7 +20,7 @@ import AddLeave from "./components/leave/AddLeave";
 import Setting from "./components/employeeDashboard/Setting";
 import AdminLeaveList from "./components/leave/AdminLeaveList";
 import LeaveDetails from "./components/leave/LeaveDetails";
-import Unauthorized from "./utils/Unauthorized";
+// import Unauthorized from "./utils/Unauthorized";
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/admin-dashboard" />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/unauthorized" element={<Unauthorized />} />
+        {/* <Route path="/unauthorized" element={<Unauthorized />} /> */}
 
         {/* Admin Routes */}
         <Route
@@ -77,7 +77,7 @@ function App() {
         </Route>
 
         {/* Catch-all route (Redirect to Unauthorized page) */}
-        <Route path="*" element={<Navigate to="/unauthorized" />} />
+        {/* <Route path="*" element={<Navigate to="/unauthorized" />} /> */}
       </Routes>
     </BrowserRouter>
   );
