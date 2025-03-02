@@ -11,8 +11,8 @@ import {
 const router = express.Router();
 
 router.post("/add", authMiddleware, addLeave);
-router.get("/:id", authMiddleware, getLeavesById);
 router.get("/detail/:id", authMiddleware, getLeavedetail);
+router.get("/:id/:role", authMiddleware, getLeavesById);
 router.get("/", authMiddleware, getLeaves);
 router.put("/:id", authMiddleware, updateLeave);
 

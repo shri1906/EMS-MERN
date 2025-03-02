@@ -14,7 +14,7 @@ const LeaveList = () => {
     try {
       setLoading(true); // Start loading
       const response = await axios.get(
-        `http://localhost:5000/api/leave/${id}`,
+        `http://localhost:5000/api/leave/${id}/${user.role}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

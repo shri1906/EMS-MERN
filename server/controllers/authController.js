@@ -26,15 +26,16 @@ const login = async (req, res) => {
       { expiresIn: "6h" }
     );
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       token,
       user: { _id: user._id, name: user.name, role: user.role },
     });
-
   } catch (error) {
     console.error("Login error:", error); // Log error for debugging
-    res.status(500).json({ success: false, error: "Internal Server Error" });
+    return res
+      .status(500)
+      .json({ success: false, error: "Internal Server Error" });
   }
 };
 
