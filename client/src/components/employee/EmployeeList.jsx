@@ -3,59 +3,60 @@ import { Link } from "react-router-dom";
 import { EmployeeButtons, columns } from "../../utils/EmployeeHelper";
 import DataTable from "react-data-table-component";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const EmployeeList = () => {
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filteredEmployees, setFilteredEmployees] = useState([]);
 
-  useEffect(() => {
-    const fetchEmployees = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get("http://localhost:5000/api/employee", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
-        if (response.data.success) {
-          let sno = 1;
-          const data = await response.data.employees.map((emp) => ({
-            _id: emp._id,
-            sno: sno++,
-            dep_name: emp.department.dep_name,
-            name: emp.userId.name,
-            dob: new Date(emp.dob).toLocaleDateString(),
-            profileImage: (
-              <img
-                src={`http://localhost:5000/uploads/${emp.userId.profileImage}`}
-                alt="Profile"
-                className="w-10 h-10 rounded-full"
-              />
-            ),
-            action: <EmployeeButtons Id={emp._id} />,
-          }));
-          setEmployees(data);
-          setFilteredEmployees(data);
-        }
-      } catch (error) {
-        if (error.response && !error.repsonse.data.success) {
-          alert(error.repsonse.data.error);
-        }
-      } finally {
-        setLoading(false);
+  const fetchEmployees = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get("http://localhost:5000/api/employee", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      if (response.data.success) {
+        let sno = 1;
+        const data = await response.data.employees.map((emp) => ({
+          _id: emp._id,
+          sno: sno++,
+          dep_name: emp.department.dep_name,
+          name: emp.userId.name,
+          dob: new Date(emp.dob).toLocaleDateString(),
+          profileImage: (
+            <img
+              src={`http://localhost:5000/uploads/${emp.userId.profileImage}`}
+              alt="Profile"
+              className="w-10 h-10 rounded-full"
+            />
+          ),
+          action: <EmployeeButtons Id={emp._id} />,
+        }));
+        setEmployees(data);
+        setFilteredEmployees(data);
       }
-    };
-
-    fetchEmployees();
-  }, []);
+    } catch (error) {
+      if (error.response && !error.response.data.success) {
+        toast.error(error.repsonse.data.error);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleFilter = (e) => {
     const records = employees.filter((emp) =>
       emp.name.toLowerCase().includes(e.target.value.toLowerCase())
     );
-    setFilteredEmployees(records)
+    setFilteredEmployees(records);
   };
+
+  useEffect(() => {
+    fetchEmployees();
+  }, []);
 
   return (
     <div className="p-6">
