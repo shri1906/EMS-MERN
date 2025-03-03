@@ -18,7 +18,9 @@ const addLeave = async (req, res) => {
       reason,
     });
     await newLeave.save();
-    return res.status(200).json({ success: true });
+    return res
+      .status(200)
+      .json({ success: true, message: "Leave added Successfully!" });
   } catch (error) {
     return res
       .status(500)
@@ -93,7 +95,9 @@ const updateLeave = async (req, res) => {
         .status(404)
         .json({ success: false, error: "leave not found!" });
     }
-    return res.status(200).json({ success: true, message:"Leave updated successfully!" });
+    return res
+      .status(200)
+      .json({ success: true, message: "Leave updated successfully!" });
   } catch (error) {
     return res
       .status(500)

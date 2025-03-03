@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const AddLeave = () => {
   const { user } = useAuth();
@@ -33,9 +34,10 @@ const AddLeave = () => {
       if (response.data.success) {
         navigate(`/employee-dashboard/leaves/${user._id}`);
       }
+      toast.success(response.data.message);
     } catch (error) {
       if (error.response && !error.repsonse.data.success) {
-        alert(error.repsonse.data.error);
+        toast.error(error.repsonse.data.error);
       }
     }
   };
