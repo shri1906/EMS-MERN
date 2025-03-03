@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export const columns = [
   {
@@ -9,6 +10,12 @@ export const columns = [
   {
     name: "Name",
     selector: (row) => row.name,
+    sortable: true,
+    width: "20%",
+  },
+  {
+    name: "Employee ID",
+    selector: (row) => row.employeeId,
     sortable: true,
     width: "20%",
   },
@@ -24,22 +31,50 @@ export const columns = [
   },
 ];
 
-export const AttendanceHelper = ({ status }) => {
+export const AttendanceHelper = ({ status,employeeId,statusChange }) => {
+
+  const markEmployee = async (status, employeeId) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:5000/api/attendance/update/${employeeId}`,
+        { status },
+        {
+          headers: {  Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      if (response.data.success) {
+        statusChange();
+      }
+      toast.success(response.data.message);
+    }
+    catch (error) {
+      if (error.response && !error.response.data.success) {
+        toast.error(error.response.data.error);
+      }
+    }
+  }
+
+
   return (
     <div className="flex space-x-8">
       {status === null ? (
         <div>
-          <button className="px-4 py-2 text-white bg-green-500 rounded me-2">
+          <button
+            className="px-4 py-2 text-white bg-green-500 rounded me-2"
+            onClick={() => markEmployee("Present", employeeId)}
+          >
             Present
           </button>
-          <button className="px-4 py-2 text-white bg-red-500 rounded me-2">
+          <button className="px-4 py-2 text-white bg-red-500 rounded me-2"
+           onClick={() => markEmployee("Absent", employeeId)}>
             Absent
           </button>
-          <button className="px-4 py-2 text-white bg-gray-500 rounded me-2">
-            {" "}
+          <button className="px-4 py-2 text-white bg-gray-500 rounded me-2"
+           onClick={() => markEmployee("Sick", employeeId)}>
             Sick
           </button>
-          <button className="px-4 py-2 text-white bg-yellow-500 rounded me-2">
+          <button className="px-4 py-2 text-white bg-yellow-500 rounded me-2"
+           onClick={() => markEmployee("Leave", employeeId)}>
             Leave
           </button>
         </div>
