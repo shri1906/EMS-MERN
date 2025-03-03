@@ -1,12 +1,15 @@
 import { NavLink } from "react-router-dom";
 import {
   FaBuilding,
-  FaCalendar,
+  FaCalendarDay,
+  FaFileAlt,
   FaMoneyBillWave,
+  FaRegCalendarAlt,
   FaTachometerAlt,
   FaTools,
   FaUsers,
 } from "react-icons/fa";
+
 
 const AdminSidebar = () => {
   return (
@@ -57,7 +60,7 @@ const AdminSidebar = () => {
             } flex items-center space-x-2 py-2.5 px-4  rounded`
           }
         >
-          <FaCalendar />
+          <FaCalendarDay />
           <span>Leaves</span>
         </NavLink>
         <NavLink
@@ -70,6 +73,28 @@ const AdminSidebar = () => {
         >
           <FaMoneyBillWave />
           <span>Salary</span>
+        </NavLink>
+        <NavLink
+          to="/admin-dashboard/attendance"
+          className={({ isActive }) =>
+            `${
+              isActive ? "bg-teal-500" : " "
+            } flex items-center space-x-2 py-2.5 px-4  rounded`
+          }
+        >
+          <FaRegCalendarAlt />
+          <span>Attendance</span>
+        </NavLink>
+        <NavLink
+          to="/admin-dashboard/attendance-report"
+          className={({ isActive }) =>
+            `${
+              isActive ? "bg-teal-500" : " "
+            } flex items-center space-x-2 py-2.5 px-4  rounded`
+          }
+        >
+          <FaFileAlt />
+          <span>Attendance Report</span>
         </NavLink>
         <NavLink
           to="/admin-dashboard/setting"
