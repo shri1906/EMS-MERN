@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const LeaveDetails = () => {
   const { id } = useParams();
@@ -23,7 +24,7 @@ const LeaveDetails = () => {
       } catch (error) {
         console.log(error.response?.data?.error);
         if (error.response && !error.response.data.success) {
-          alert(error.response.data.error);
+          toast.error(error.response.data.error);
         }
       }
     };
@@ -44,10 +45,11 @@ const LeaveDetails = () => {
       if (response.data.success) {
         navigate("/admin-dashboard/leaves");
       }
+      toast.success(response.data.message);
     } catch (error) {
       console.log(error.response?.data?.error);
       if (error.response && !error.response.data.success) {
-        alert(error.response.data.error);
+        toast.error(error.response.data.error);
       }
     }
   };

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchDepartments, getEmployees } from "../../utils/EmployeeHelper";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const AddSalary = () => {
   const [salary, setSalary] = useState({
@@ -37,7 +38,7 @@ const AddSalary = () => {
         );
         if (response.data.success) {
           const employee = response.data.employee;
-          setEmployee((prev) => ({
+          setEmployees((prev) => ({
             ...prev,
             name: employee.userId.name,
             maritalStatus: employee.maritalStatus,
@@ -48,7 +49,7 @@ const AddSalary = () => {
         }
       } catch (error) {
         if (error.response && !error.repsonse.data.success) {
-          alert(error.repsonse.data.error);
+          toast.error(error.repsonse.data.error);
         }
       }
     };
@@ -81,9 +82,10 @@ const AddSalary = () => {
       if (response.data.success) {
         navigate("/admin-dashboard/employees");
       }
+      toast.success(response.data.message);
     } catch (error) {
       if (error.response && !error.response.data.success) {
-        alert(error.response?.data?.error || "An error occurred");
+        toast.error(error.response?.data?.error || "An error occurred");
       }
     }
   };
@@ -195,7 +197,7 @@ const AddSalary = () => {
               type="submit"
               className="w-full mt-6 bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded"
             >
-              Edit Employee
+              Add Salary
             </button>
           </form>
         </div>

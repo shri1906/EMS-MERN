@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const Setting = () => {
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { user } = useAuth();
   const [setting, setSetting] = useState({
@@ -21,9 +21,9 @@ const Setting = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (setting.newPassword !== setting.confirmPassword) {
-      setError("Password Doesn't Macth!");
-    } else {
+    // if (setting.newPassword !== setting.confirmPassword) {
+    //   toast.error("Password Doesn't Match!");
+    // } else {
       try {
         const response = await axios.put(
           "http://localhost:5000/api/setting/change-password",
@@ -36,25 +36,23 @@ const Setting = () => {
         );
         console.log(response.data)
         if (response.data.success) {
-          if(user.role === "employee"){
+          if (user.role === "employee") {
             navigate(`/employee-dashboard/profile/${user._id}`);
-            return;            
+            return;
           }
-
-          navigate(`/admin-dashboard`)
-          setError("");
+          navigate(`/admin-dashboard`);
         }
+        toast.success(response.data.message);
       } catch (error) {
         if (error.response && !error.response.data.sucess) {
-          setError(error.response.data.error);
+          toast.error(error.response.data.error);
         }
       }
-    }
+    
   };
   return (
     <div className="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md w-96">
       <h2 className="text-2xl font-bold mb-6">Change Password</h2>
-      <p className="text-red-500">{error}</p>
       <form onSubmit={handleSubmit}>
         {/* Old Password */}
         <div>
