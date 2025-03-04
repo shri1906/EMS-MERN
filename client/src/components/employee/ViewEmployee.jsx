@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 
 const ViewEmployee = () => {
@@ -21,9 +22,9 @@ const ViewEmployee = () => {
           setEmployee(response.data.employee);
         }
       } catch (error) {
-        console.log(error.repsonse.data.error);
-        if (error.response && !error.repsonse.data.success) {
-          alert(error.repsonse.data.error);
+        console.log(error.response.data.error);
+        if (error.response && !error.response.data.success) {
+          toast.error(error.response.data.error);
         }
       }
     };

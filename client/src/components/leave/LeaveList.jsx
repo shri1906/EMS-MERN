@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import toast from "react-hot-toast";
 
 const LeaveList = () => {
   const { user } = useAuth();
@@ -26,7 +27,7 @@ const LeaveList = () => {
       }
     } catch (error) {
       if (error.response && !error.response.data.success) {
-        alert(error.message);
+        toast.error(error.response.data.error);
       }
     } finally {
       setLoading(false); // Stop loading

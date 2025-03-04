@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchDepartments } from "../../utils/EmployeeHelper";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const AddEmployee = () => {
   const [departments, setDepartments] = useState([]);
@@ -47,7 +48,7 @@ const AddEmployee = () => {
       }
     } catch (error) {
       if (error.response && !error.response.data.success) {
-        alert(error.response?.data?.error || "An error occurred");
+        toast.error(error.response?.data?.error || "An error occurred");
 
       }
     }

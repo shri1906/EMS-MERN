@@ -49,8 +49,8 @@ const EditEmployee = () => {
           }));
         }
       } catch (error) {
-        if (error.response && !error.repsonse.data.success) {
-          toast.error(error.repsonse.data.error);
+        if (error.response && !error.response.data.success) {
+          toast.error(error.response.data.error);
         }
       }
     };

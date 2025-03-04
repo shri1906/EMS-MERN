@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export const columns = [
   {
@@ -35,8 +36,8 @@ export const DepartmentButtons = ({ _id, onDepartmentDelete }) => {
           onDepartmentDelete();
         }
       } catch (error) {
-        if (error.response && !error.repsonse.data.success) {
-          alert(error.repsonse.data.error);
+        if (error.response && !error.response.data.success) {
+          toast.error(error.response.data.error);
         }
       }
     }

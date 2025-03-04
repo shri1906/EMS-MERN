@@ -3,6 +3,7 @@ import DataTable from "react-data-table-component";
 import { columns, DepartmentButtons } from "../../utils/DepartmentHelper";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const DepartmentList = () => {
   const [departments, setDepartments] = useState([]);
@@ -38,8 +39,8 @@ const DepartmentList = () => {
         setFilteredData(data);
       }
     } catch (error) {
-      if (error.response && !error.repsonse.data.success) {
-        alert(error.repsonse.data.error);
+      if (error.response && !error.response.data.success) {
+        toast.error(error.response.data.error);
       }
     } finally {
       setLoading(false);

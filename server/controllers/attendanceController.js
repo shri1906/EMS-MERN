@@ -29,7 +29,7 @@ const updateAttendance = async (req, res) => {
     );
     return res
       .status(200)
-      .json({ success: true, message: "Attendance Updated" , attendance});
+      .json({ success: true, message: "Attendance Updated", attendance });
   } catch (error) {
     return res
       .status(500)
@@ -37,4 +37,35 @@ const updateAttendance = async (req, res) => {
   }
 };
 
-export { getAttendance ,updateAttendance};
+const attendanceReport = async (req, res) => {
+  try {
+    const { date, limit = 5, skip = 0 } = req.query;
+    const query = {};
+    if (date) query.date = date;
+    const attendance = await Attendance.find(query)
+      .populate({ path: "employeeId", populate: ["department", "userId"] })
+      .sort({ date: -1 })
+      .limit(parseInt(limit))
+      .skip(parseInt(skip));
+
+    const groupData = attendance.reduce((result, record) => {
+      if (!result[record.date]) {
+        result[record.date] = [];
+      }
+      result[record.date].push({
+        employeeId: record.employeeId.employeeId,
+        status: record.status || "Not Marked",
+        departmentName: record.employeeId.department.dep_name,
+        employeeName: record.employeeId.userId.name,
+      });
+      return result;
+    }, {});
+    return res.status(200).json({ success: true, groupData });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ success: false, error: "Error in fetching Attendance Report!" });
+  }
+};
+
+export { getAttendance, updateAttendance, attendanceReport };

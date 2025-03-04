@@ -10,6 +10,7 @@ import {
 import SummaryCard from "./SummaryCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";``
 
 const AdminSummary = () => {
   const [summary, setSummary] = useState(null);
@@ -28,7 +29,7 @@ const AdminSummary = () => {
         setSummary(summary.data);
       } catch (error) {
         if (error.response) {
-          alert(error.response.data.error);
+          toast.error(error.response.data.error);
         }
       }
     };

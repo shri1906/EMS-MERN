@@ -35,7 +35,6 @@ const getSummary = async (req, res) => {
       leaveSummary,
     });
   } catch (error) {
-    console.log(error.message)
     return res
       .status(500)
       .json({ success: false, error: "Unable to fetch summary!" });

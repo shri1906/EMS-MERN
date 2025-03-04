@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 export const columns = [
@@ -48,8 +49,8 @@ export const fetchDepartments = async () => {
       departments = response.data.departments;
     }
   } catch (error) {
-    if (error.response && !error.repsonse.data.success) {
-      alert(error.repsonse.data.error);
+    if (error.response && !error.response.data.success) {
+      toast.error(error.response.data.error);
     }
   }
   return departments;
@@ -68,8 +69,8 @@ export const getEmployees= async (id) => {
       employees = response.data.employees;
     }
   } catch (error) {
-    if (error.response && !error.repsonse.data.success) {
-      alert(error.repsonse.data.error);
+    if (error.response && !error.response.data.success) {
+      toast.error(error.response.data.error);
     }
   }
   return employees;

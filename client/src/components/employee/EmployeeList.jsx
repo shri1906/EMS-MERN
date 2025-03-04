@@ -40,7 +40,7 @@ const EmployeeList = () => {
       }
     } catch (error) {
       if (error.response && !error.response.data.success) {
-        toast.error(error.repsonse.data.error);
+        toast.error(error.response.data.error);
       }
     } finally {
       setLoading(false);
