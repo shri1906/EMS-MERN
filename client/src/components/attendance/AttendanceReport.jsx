@@ -55,24 +55,27 @@ const AttendanceReport = () => {
 
   return (
     <div className="mt-6">
-      <h2 className="text-center text-2xl font-bold">Attendance Report</h2>
+      <h2 className="text-center text-2xl font-bold">
+        Daily Attendance Report
+      </h2>
       <div className="px-4 flex justify-between">
         <div className="flex items-center">
-        <h2 className="text-xl font-semibold me-4">Filter by Date:</h2>
-        <input
-          type="date"
-          className="border bg-gray-100"
-          onChange={(e) => { setDateFilter(e.target.value);
-            setSkip(0);
-          }}
-        />
+          <h2 className="text-xl font-semibold me-4">Filter by Date:</h2>
+          <input
+            type="date"
+            className="border bg-gray-100"
+            onChange={(e) => {
+              setDateFilter(e.target.value);
+              setSkip(0);
+            }}
+          />
         </div>
         <Link
-            to="/admin-dashboard/monthly-attendance-report"
-            className="px-4 py-1 text-white bg-teal-600 rounded"
-          >
-            Monthly Report
-          </Link>
+          to="/admin-dashboard/monthly-attendance-report"
+          className="px-4 py-1 text-white bg-teal-600 rounded"
+        >
+          Monthly Report
+        </Link>
       </div>
 
       {loading ? (
@@ -106,7 +109,12 @@ const AttendanceReport = () => {
           </div>
         ))
       )}
-      <button className="px-4 mx-6 mt-4 py-2 border bg-gray-200  font-semibold" onClick={handleLoadMore}>Load More...</button>
+      <button
+        className="px-4 mx-6 mt-4 py-2 border bg-gray-200  font-semibold"
+        onClick={handleLoadMore}
+      >
+        Load More...
+      </button>
     </div>
   );
 };

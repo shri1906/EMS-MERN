@@ -8,7 +8,7 @@ const Summary = () => {
     <div className="p-6">
       <div className="rounded flex bg-white">
         <div
-          className={`text-3xl flex justify-center items-center bg-teal-600 text-white px-4`}
+          className={`text-3xl flex justify-center items-center bg-gradient-to-r from-cyan-500 to-teal-600 shadow-lg shadow-cyan-800 text-white px-4`}
         >
           <FaUser />
         </div>
