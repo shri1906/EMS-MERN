@@ -26,37 +26,6 @@ const AddSalary = () => {
     getDepartments();
   }, []);
 
-  useEffect(() => {
-    const fetchEmployee = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/api/employee/${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
-        if (response.data.success) {
-          const employee = response.data.employee;
-          setEmployees((prev) => ({
-            ...prev,
-            name: employee.userId.name,
-            maritalStatus: employee.maritalStatus,
-            designation: employee.designation,
-            salary: employee.salary,
-            department: employee.department,
-          }));
-        }
-      } catch (error) {
-        if (error.response && !error.response.data.success) {
-          toast.error(error.response.data.error);
-        }
-      }
-    };
-    fetchEmployee();
-  }, []);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setSalary((prevData) => ({ ...prevData, [name]: value }));
