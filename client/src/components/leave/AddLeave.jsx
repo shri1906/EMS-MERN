@@ -3,6 +3,7 @@ import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { BACKEND_URL } from "../../utils/ApiHelper";
 
 const AddLeave = () => {
   const { user } = useAuth();
@@ -23,7 +24,7 @@ const AddLeave = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/leave/add`,
+        `${BACKEND_URL}/api/leave/add`,
         leave,
         {
           headers: {

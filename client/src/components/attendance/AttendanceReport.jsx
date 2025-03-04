@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { BACKEND_URL } from "../../utils/ApiHelper";
 
 const AttendanceReport = () => {
   const [report, setReport] = useState({});
@@ -16,7 +17,7 @@ const AttendanceReport = () => {
       if (dateFilter) query.append("date", dateFilter);
 
       const response = await axios.get(
-        `http://localhost:5000/api/attendance/report?${query.toString()}`,
+        `${BACKEND_URL}/api/attendance/report?${query.toString()}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

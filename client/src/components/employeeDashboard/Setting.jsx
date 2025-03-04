@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { BACKEND_URL } from "../../utils/ApiHelper";
 
 const Setting = () => {
   const navigate = useNavigate();
@@ -21,12 +22,9 @@ const Setting = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // if (setting.newPassword !== setting.confirmPassword) {
-    //   toast.error("Password Doesn't Match!");
-    // } else {
       try {
         const response = await axios.put(
-          "http://localhost:5000/api/setting/change-password",
+          `${BACKEND_URL}/api/setting/change-password`,
           setting,
           {
             headers: {

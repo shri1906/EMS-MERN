@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import toast from "react-hot-toast";
+import { BACKEND_URL } from "../../utils/ApiHelper";
 
 const LeaveList = () => {
   const { user } = useAuth();
@@ -15,7 +16,7 @@ const LeaveList = () => {
     try {
       setLoading(true); // Start loading
       const response = await axios.get(
-        `http://localhost:5000/api/leave/${id}/${user.role}`,
+        `${BACKEND_URL}/api/leave/${id}/${user.role}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

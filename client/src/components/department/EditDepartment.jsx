@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { BACKEND_URL } from "../../utils/ApiHelper";
 
 const EditDepartment = () => {
   const { id } = useParams();
@@ -44,7 +45,7 @@ const EditDepartment = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/department/${id}`,
+        `${BACKEND_URL}/api/department/${id}`,
         department,
         {
           headers: {

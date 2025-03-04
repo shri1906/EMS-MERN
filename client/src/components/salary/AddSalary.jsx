@@ -3,6 +3,7 @@ import { fetchDepartments, getEmployees } from "../../utils/EmployeeHelper";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import { BACKEND_URL } from "../../utils/ApiHelper";
 
 const AddSalary = () => {
   const [salary, setSalary] = useState({
@@ -71,7 +72,7 @@ const AddSalary = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/salary/add`,
+        `${BACKEND_URL}/api/salary/add`,
         salary,
         {
           headers: {

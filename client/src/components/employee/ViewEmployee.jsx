@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
+import { BACKEND_URL } from "../../utils/ApiHelper";
 
 const ViewEmployee = () => {
   const { id } = useParams();
@@ -11,7 +12,7 @@ const ViewEmployee = () => {
     const fetchEmployee = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/employee/${id}`,
+          `${BACKEND_URL}/api/employee/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

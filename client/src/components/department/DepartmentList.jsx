@@ -4,6 +4,7 @@ import { columns, DepartmentButtons } from "../../utils/DepartmentHelper";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { BACKEND_URL } from "../../utils/ApiHelper";
 
 const DepartmentList = () => {
   const [departments, setDepartments] = useState([]);
@@ -17,7 +18,7 @@ const DepartmentList = () => {
   const fetchDepartments = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/api/department", {
+      const response = await axios.get(`${BACKEND_URL}/api/department`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

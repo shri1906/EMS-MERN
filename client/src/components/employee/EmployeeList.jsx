@@ -4,6 +4,7 @@ import { EmployeeButtons, columns } from "../../utils/EmployeeHelper";
 import DataTable from "react-data-table-component";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { BACKEND_URL } from "../../utils/ApiHelper";
 
 const EmployeeList = () => {
   const [employees, setEmployees] = useState([]);
@@ -13,7 +14,7 @@ const EmployeeList = () => {
   const fetchEmployees = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/api/employee", {
+      const response = await axios.get(`${BACKEND_URL}/api/employee`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -28,7 +29,7 @@ const EmployeeList = () => {
           dob: new Date(emp.dob).toLocaleDateString(),
           profileImage: (
             <img
-              src={`http://localhost:5000/uploads/${emp.userId.profileImage}`}
+              src={`${BACKEND_URL}/uploads/${emp.userId.profileImage}`}
               alt="Profile"
               className="w-10 h-10 rounded-full"
             />

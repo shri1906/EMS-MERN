@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import { BACKEND_URL } from "../../utils/ApiHelper";
 
 const LeaveDetails = () => {
   const { id } = useParams();
@@ -34,7 +35,7 @@ const LeaveDetails = () => {
   const changeStatus = async (id, status) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/leave/${id}`,
+        `${BACKEND_URL}/api/leave/${id}`,
         { status },
         {
           headers: {

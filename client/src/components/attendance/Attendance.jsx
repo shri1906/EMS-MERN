@@ -4,6 +4,7 @@ import DataTable from "react-data-table-component";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { AttendanceHelper, columns } from "../../utils/AttendanceHelper";
+import { BACKEND_URL } from "../../utils/ApiHelper";
 
 const Attendance = () => {
   const [attendance, setAttendance] = useState([]);
@@ -17,7 +18,7 @@ const Attendance = () => {
   const fetchAttendance = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/api/attendance", {
+      const response = await axios.get(`${BACKEND_URL}/api/attendance`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

@@ -3,13 +3,14 @@ import React, { useEffect, useState } from "react";
 import { columns, LeaveButtons } from "../../utils/LeaveHelper";
 import DataTable from "react-data-table-component";
 import toast from "react-hot-toast";
+import { BACKEND_URL } from "../../utils/ApiHelper";
 
 const AdminLeaveList = () => {
   const [leaves, setLeaves] = useState(null);
   const [filteredLeaves, setFilteredleaves] = useState(null);
   const fetchLeaves = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/leave", {
+      const response = await axios.get(`${BACKEND_URL}/api/leave`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

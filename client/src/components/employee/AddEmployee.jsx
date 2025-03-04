@@ -3,6 +3,7 @@ import { fetchDepartments } from "../../utils/EmployeeHelper";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { BACKEND_URL } from "../../utils/ApiHelper";
 
 const AddEmployee = () => {
   const [departments, setDepartments] = useState([]);
@@ -35,7 +36,7 @@ const AddEmployee = () => {
     });
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/employee/add",
+        `${BACKEND_URL}/api/employee/add`,
         formDataObj,
         {
           headers: {

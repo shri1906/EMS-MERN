@@ -10,7 +10,8 @@ import {
 import SummaryCard from "./SummaryCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import toast from "react-hot-toast";``
+import toast from "react-hot-toast";import { BACKEND_URL } from "../../utils/ApiHelper";
+``
 
 const AdminSummary = () => {
   const [summary, setSummary] = useState(null);
@@ -19,7 +20,7 @@ const AdminSummary = () => {
     const fetchSummary = async () => {
       try {
         const summary = await axios.get(
-          "http://localhost:5000/api/dashboard/summary",
+          `${BACKEND_URL}/api/dashboard/summary`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

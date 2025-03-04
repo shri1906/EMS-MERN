@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { BACKEND_URL } from "../../utils/ApiHelper";
 
 const AddDepartment = () => {
   const [department, setDepartment] = useState({
@@ -19,7 +20,7 @@ const AddDepartment = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/department/add",
+        `${BACKEND_URL}/api/department/add`,
         department,
         {
           headers: {

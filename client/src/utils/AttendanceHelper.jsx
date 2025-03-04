@@ -1,5 +1,6 @@
 import axios from "axios";
 import toast from "react-hot-toast";
+import { BACKEND_URL } from "./ApiHelper";
 
 export const columns = [
   {
@@ -35,7 +36,7 @@ export const AttendanceHelper = ({ status, employeeId, statusChange }) => {
   const markEmployee = async (status, employeeId) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/attendance/update/${employeeId}`,
+        `${BACKEND_URL}/api/attendance/update/${employeeId}`,
         { status },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },

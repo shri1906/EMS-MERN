@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import toast from "react-hot-toast";
+import { BACKEND_URL } from "../../utils/ApiHelper";
 
 const ViewSalary = () => {
   const [salaries, setSalaries] = useState([]);
@@ -12,7 +13,7 @@ const ViewSalary = () => {
   const {user} = useAuth()
   const fetchSalaries = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/salary/${id}/${user.role}`, {
+      const response = await axios.get(`${BACKEND_URL}/api/salary/${id}/${user.role}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
