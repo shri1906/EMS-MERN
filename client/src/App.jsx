@@ -23,6 +23,7 @@ import AdminLeaveList from "./components/leave/AdminLeaveList";
 import LeaveDetails from "./components/leave/LeaveDetails";
 import Attendance from "./components/attendance/Attendance";
 import AttendanceReport from "./components/attendance/AttendanceReport";
+import MonthlyReport from "./components/attendance/MonthlyReport";
 // import Unauthorized from "./utils/Unauthorized";
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
           <Route path="setting" element={<Setting />} />
           <Route path="attendance" element={<Attendance />} />
           <Route path="attendance-report" element={<AttendanceReport />} />
+          <Route path="monthly-attendance-report" element={<MonthlyReport />} />
         </Route>
 
         {/* Employee Routes */}

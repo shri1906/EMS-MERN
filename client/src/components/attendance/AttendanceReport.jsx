@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { BACKEND_URL } from "../../utils/ApiHelper";
+import { Link } from "react-router-dom";
 
 const AttendanceReport = () => {
   const [report, setReport] = useState({});
@@ -55,7 +56,8 @@ const AttendanceReport = () => {
   return (
     <div className="mt-6">
       <h2 className="text-center text-2xl font-bold">Attendance Report</h2>
-      <div className="px-4 flex">
+      <div className="px-4 flex justify-between">
+        <div className="flex items-center">
         <h2 className="text-xl font-semibold me-4">Filter by Date:</h2>
         <input
           type="date"
@@ -64,6 +66,13 @@ const AttendanceReport = () => {
             setSkip(0);
           }}
         />
+        </div>
+        <Link
+            to="/admin-dashboard/monthly-attendance-report"
+            className="px-4 py-1 text-white bg-teal-600 rounded"
+          >
+            Monthly Report
+          </Link>
       </div>
 
       {loading ? (

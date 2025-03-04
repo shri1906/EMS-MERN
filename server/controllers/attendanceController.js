@@ -68,4 +68,65 @@ const attendanceReport = async (req, res) => {
   }
 };
 
-export { getAttendance, updateAttendance, attendanceReport };
+const monthlyAttendanceReport = async (req, res) => {
+  try {
+    const { month, year } = req.query;
+    if (!month || !year) {
+      return res
+        .status(400)
+        .json({ success: false, error: "Month and Year are required" });
+    }
+    // Ensure month and year are correctly formatted
+    const monthStr = month.padStart(2, "0");
+    const yearStr = year.toString();
+
+    const startDate = `${yearStr}-${monthStr}-01`;
+    const endDate = `${yearStr}-${monthStr}-31`;
+
+    const attendance = await Attendance.find({
+      date: { $gte: startDate, $lte: endDate },
+    })
+      .populate({ path: "employeeId", populate: ["department", "userId"] })
+      .sort({ date: 1 });
+    if (attendance.length === 0) {
+      return res.status(200).json({ success: true, data: [] });
+    }
+
+    const employeeData = {};
+
+    attendance.forEach((record) => {
+      const empId = record.employeeId?._id?.toString();
+      const dateKey = record.date;
+      if (!empId) {
+        return;
+      }
+
+      if (!employeeData[empId]) {
+        employeeData[empId] = {
+          employeeId: record.employeeId.employeeId,
+          name: record.employeeId.userId.name,
+          department: record.employeeId.department.dep_name,
+          attendance: {},
+        };
+      }
+      // Store first letter of the status (P, A, S, L)
+      employeeData[empId].attendance[dateKey] = record.status.charAt(0);
+    });
+
+    return res
+      .status(200)
+      .json({ success: true, data: Object.values(employeeData) });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: "Error in fetching Monthly Attendance Report!",
+    });
+  }
+};
+
+export {
+  getAttendance,
+  updateAttendance,
+  attendanceReport,
+  monthlyAttendanceReport,
+};
