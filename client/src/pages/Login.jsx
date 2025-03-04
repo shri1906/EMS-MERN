@@ -39,7 +39,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col items-center h-screen justify-center bg-gradient-to-b from-teal-600 from-50% to-gray-100 to-50% space-y-6">
+    <div className="flex flex-col items-center h-screen justify-center bg-gradient-to-b from-cyan-600 from-50% to-gray-100 to-50% space-y-6">
       <h2 className="font-anton text-3xl text-white">
         Employee Management System
       </h2>
@@ -65,7 +65,7 @@ const Login = () => {
             <input
               type="password"
               className="w-full px-3 py-2 border"
-              placeholder="************"
+              placeholder="********"
               onChange={(e) => setPassword(e.target.value)}
               required
             />
@@ -75,14 +75,14 @@ const Login = () => {
               <input type="checkbox" className="form-checkbox" />
               <span className="ml-2 text-gray-700">Remember me</span>
             </label>
-            <a href="#" className="text-teal-600">
+            <a href="#" className="text-cyan-600">
               Forgot Password?
             </a>
           </div>
           <div className="mb-4">
             <button
               type="submit"
-              className="w-full bg-teal-600 text-white py-2"
+              className="w-full bg-cyan-600 text-white py-2"
             >
               Login
             </button>

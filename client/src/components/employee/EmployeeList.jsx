@@ -73,7 +73,7 @@ const EmployeeList = () => {
         />
         <Link
           to="/admin-dashboard/add-employee"
-          className="px-4 py-1 text-white bg-teal-600 rounded"
+          className="px-4 py-1 text-white bg-cyan-600 rounded"
         >
           Add New Employee
         </Link>

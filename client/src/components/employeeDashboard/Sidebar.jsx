@@ -12,7 +12,7 @@ const Sidebar = () => {
   const { user } = useAuth();
   return (
     <div className="bg-gray-800 text-white h-screen fixed left-0 top-0 bottom-0 space-y-2 w-64">
-      <div className="bg-teal-600 h-12 flex items-center justify-center">
+      <div className="bg-cyan-600 h-12 flex items-center justify-center">
         <h3 className="text-2xl text-center font-anton+">Employee MS</h3>
       </div>
       <div className="px-3">
@@ -20,7 +20,7 @@ const Sidebar = () => {
           to="/employee-dashboard"
           className={({ isActive }) =>
             `${
-              isActive ? "bg-teal-500" : " "
+              isActive ? "bg-cyan-500" : " "
             } flex items-center space-x-2 py-2.5 px-4  rounded`
           }
           end
@@ -32,7 +32,7 @@ const Sidebar = () => {
           to={`/employee-dashboard/profile/${user._id}`}
           className={({ isActive }) =>
             `${
-              isActive ? "bg-teal-500" : " "
+              isActive ? "bg-cyan-500" : " "
             } flex items-center space-x-2 py-2.5 px-4  rounded`
           }
         >
@@ -44,7 +44,7 @@ const Sidebar = () => {
           to={`/employee-dashboard/leaves/${user._id}`}
           className={({ isActive }) =>
             `${
-              isActive ? "bg-teal-500" : " "
+              isActive ? "bg-cyan-500" : " "
             } flex items-center space-x-2 py-2.5 px-4  rounded`
           }
         >
@@ -55,7 +55,7 @@ const Sidebar = () => {
           to={`/employee-dashboard/salary/${user._id}`}
           className={({ isActive }) =>
             `${
-              isActive ? "bg-teal-500" : " "
+              isActive ? "bg-cyan-500" : " "
             } flex items-center space-x-2 py-2.5 px-4  rounded`
           }
         >
@@ -66,7 +66,7 @@ const Sidebar = () => {
           to="/employee-dashboard/setting"
           className={({ isActive }) =>
             `${
-              isActive ? "bg-teal-500" : " "
+              isActive ? "bg-cyan-500" : " "
             } flex items-center space-x-2 py-2.5 px-4  rounded`
           }
         >

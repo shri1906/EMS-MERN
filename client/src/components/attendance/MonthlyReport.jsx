@@ -99,7 +99,7 @@ const MonthlyReport = () => {
           />
         </div>
         <button
-          className="bg-teal-600 text-white px-2 py-1 rounded shadow-md hover:bg-teal-700 transition"
+          className="bg-cyan-600 text-white px-2 py-1 rounded shadow-md hover:bg-cyan-700 transition"
           onClick={() => navigate(-1)}
         >
           Go to daily Reports

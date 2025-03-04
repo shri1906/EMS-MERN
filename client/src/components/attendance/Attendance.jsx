@@ -73,7 +73,7 @@ const Attendance = () => {
         <p className="text-2xl">Mark Employees for: <span className="text-2xl underline">{new Date().toISOString().split('T')[0]}</span></p>
         <Link
           to="/admin-dashboard/attendance-report"
-          className="px-4 py-1 text-white bg-teal-600 rounded"
+          className="px-4 py-1 text-white bg-cyan-600 rounded"
         >
           Attendance Report
         </Link>

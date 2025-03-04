@@ -57,7 +57,7 @@ const AdminSummary = () => {
             icon={<FaUsers />}
             text={"Total Employees"}
             number={summary.totalEmployees}
-            color="bg-gradient-to-r from-cyan-500 to-teal-600 shadow-lg shadow-cyan-800"
+            color="bg-gradient-to-r from-cyan-500 to-cyan-600 shadow-lg shadow-cyan-800"
           />
           <SummaryCard
             icon={<FaBuilding />}
@@ -84,7 +84,7 @@ const AdminSummary = () => {
             icon={<FaFileAlt />}
             text={"Leave Applied"}
             number={summary.leaveSummary.appliedFor}
-            color="bg-gradient-to-r from-cyan-500 to-teal-600 shadow-lg shadow-cyan-800"
+            color="bg-gradient-to-r from-cyan-500 to-cyan-600 shadow-lg shadow-cyan-800"
           />
           <SummaryCard
             icon={<FaCheckCircle />}

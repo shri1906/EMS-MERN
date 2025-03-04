@@ -72,7 +72,7 @@ const AttendanceReport = () => {
         </div>
         <Link
           to="/admin-dashboard/monthly-attendance-report"
-          className="px-4 py-1 text-white bg-teal-600 rounded"
+          className="px-4 py-1 text-white bg-cyan-600 rounded"
         >
           Monthly Report
         </Link>

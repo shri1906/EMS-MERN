@@ -73,19 +73,19 @@ const AdminLeaveList = () => {
             />
             <div>
               <button
-                className="px-2 me-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded"
+                className="px-2 me-2 py-1 bg-cyan-600 text-white hover:bg-cyan-700 rounded"
                 onClick={() => filterByButton("Pending")}
               >
                 Pending
               </button>
               <button
-                className="px-2 me-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded"
+                className="px-2 me-2 py-1 bg-cyan-600 text-white hover:bg-cyan-700 rounded"
                 onClick={() => filterByButton("Approved")}
               >
                 Approved
               </button>
               <button
-                className="px-2 me-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded"
+                className="px-2 me-2 py-1 bg-cyan-600 text-white hover:bg-cyan-700 rounded"
                 onClick={() => filterByButton("Rejected")}
               >
                 Rejected
