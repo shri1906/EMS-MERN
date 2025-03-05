@@ -13,12 +13,13 @@ import attendanceRouter from "./routes/attendance.js";
 connectToDatabase();
 const app = express();
 
-app.use(cors(
-  {
-    origin: 'https://ems-frontend-sand.vercel.app',
-    credentials: true
-  }
-));
+app.use(cors({
+  origin: ['https://ems-frontend-sand.vercel.app'], 
+  methods: "GET,POST,PUT,DELETE", 
+  allowedHeaders: "Content-Type,Authorization", 
+  credentials: true, 
+}));
+
 app.use(express.json());
 
 app.use("/uploads", express.static("public/uploads"));
