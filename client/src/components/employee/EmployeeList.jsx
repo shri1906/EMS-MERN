@@ -21,7 +21,7 @@ const EmployeeList = () => {
       });
       if (response.data.success) {
         let sno = 1;
-        const data = await response.data.employees.map((emp) => ({
+        const data = response.data.employees.map((emp) => ({
           _id: emp._id,
           sno: sno++,
           dep_name: emp.department.dep_name,
@@ -61,26 +61,40 @@ const EmployeeList = () => {
 
   return (
     <div className="p-6">
-      <div className="text-center">
-        <h3 className="text-2xl font-bold">Manage Employee</h3>
+      {/* Title */}
+      <div className="text-center mb-4">
+        <h3 className="text-2xl font-bold">Manage Employees</h3>
       </div>
-      <div className="flex justify-between items-center">
+
+      {/* Search & Add Button (Responsive) */}
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <input
           type="text"
-          placeholder="Search By Department..."
+          placeholder="Search By Name..."
           onChange={handleFilter}
-          className="px-4 py-1 border rounded"
+          className="px-4 py-2 border rounded w-full sm:w-72"
         />
         <Link
           to="/admin-dashboard/add-employee"
-          className="px-4 py-1 text-white bg-cyan-600 rounded"
+          className="px-4 py-2 text-white bg-cyan-600 rounded hover:bg-cyan-700 transition"
         >
           Add New Employee
         </Link>
       </div>
-      <div className="pt-4">
-        <DataTable columns={columns} data={filteredEmployees} pagination />
-      </div>
+
+      {/* Data Table (Scrollable on Small Screens) */}
+      <div className="pt-4 overflow-x-auto">
+  <div className="overflow-y-auto max-h-[400px]">
+    <DataTable
+      columns={columns}
+      data={filteredEmployees}
+      pagination
+      progressPending={loading}
+      responsive
+    />
+  </div>
+</div>
+
     </div>
   );
 };

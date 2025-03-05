@@ -66,11 +66,11 @@ const LeaveList = () => {
         ) : leaves.length === 0 ? (
           <p className="text-center text-lg font-semibold">No leaves found.</p>
         ) : (
-          <table className="w-full text-sm text-left text-gray-500">
+          <table className="text-sm text-left text-gray-500">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 border border-gray-200">
               <tr>
-                <th className="px-6 py-3">SNo</th>
-                <th className="px-6 py-3">Leave Type</th>
+                <th className="py-3">SNo</th>
+                <th className="py-3">Leave Type</th>
                 <th className="px-6 py-3">From</th>
                 <th className="px-6 py-3">To</th>
                 <th className="px-6 py-3">Description</th>

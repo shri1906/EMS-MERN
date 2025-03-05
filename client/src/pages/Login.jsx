@@ -8,27 +8,26 @@ import { BACKEND_URL } from "../utils/ApiHelper.jsx";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const {login} = useAuth()
-  const navigate = useNavigate()
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        `${BACKEND_URL}/api/auth/login`,
-        {
-          email,
-          password,
-        }
-      );
+      const response = await axios.post(`${BACKEND_URL}/api/auth/login`, {
+        email,
+        password,
+      });
+
       if (response.data.success) {
-        toast.success("Logged in Successfully!")
+        toast.success("Logged in Successfully!");
         login(response.data.user);
-        localStorage.setItem("token", response.data.token)
-        if(response.data.user.role == "admin"){
-          navigate('/admin-dashboard')
-        } else{
-          navigate('/employee-dashboard')
+        localStorage.setItem("token", response.data.token);
+
+        if (response.data.user.role === "admin") {
+          navigate("/admin-dashboard");
+        } else {
+          navigate("/employee-dashboard");
         }
       }
     } catch (error) {
@@ -39,50 +38,60 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col items-center h-screen justify-center bg-gradient-to-b from-cyan-600 from-50% to-gray-100 to-50% space-y-6">
-      <h2 className="font-anton text-3xl text-white">
-        Employee Management System
-      </h2>
-      <div className="border shadow p-6 w-80 bg-white">
-        <h2 className="text-2xl font-bold mb-4">Login</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-cyan-600 from-50% to-gray-100 to-50% px-4">
+      <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
+        <h2 className="font-anton text-2xl font-bold text-center text-gray-800 mb-6">
+          Employee Management System
+        </h2>
+        <h3 className="text-xl font-semibold text-center mb-4">Login</h3>
         <form onSubmit={handleSubmit}>
+          {/* Email Input */}
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700">
+            <label htmlFor="email" className="block text-gray-700 font-medium">
               Email
             </label>
             <input
               type="email"
-              className="w-full px-3 py-2 border"
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
               placeholder="Enter Email..."
               onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
-          <div>
-            <label htmlFor="password" className="block text-gray-700">
+
+          {/* Password Input */}
+          <div className="mb-4">
+            <label
+              htmlFor="password"
+              className="block text-gray-700 font-medium"
+            >
               Password
             </label>
             <input
               type="password"
-              className="w-full px-3 py-2 border"
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
               placeholder="********"
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
+
+          {/* Remember Me & Forgot Password */}
           <div className="mb-4 flex items-center justify-between">
             <label className="inline-flex items-center">
-              <input type="checkbox" className="form-checkbox" />
+              <input type="checkbox" className="form-checkbox text-cyan-600" />
               <span className="ml-2 text-gray-700">Remember me</span>
             </label>
-            <a href="#" className="text-cyan-600">
+            <a href="#" className="text-cyan-600 hover:underline">
               Forgot Password?
             </a>
           </div>
+
+          {/* Login Button */}
           <div className="mb-4">
             <button
               type="submit"
-              className="w-full bg-cyan-600 text-white py-2"
+              className="w-full bg-cyan-600 text-white py-2 rounded-lg hover:bg-cyan-700 transition-all duration-300"
             >
               Login
             </button>
