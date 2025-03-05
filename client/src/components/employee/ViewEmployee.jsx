@@ -42,7 +42,7 @@ const ViewEmployee = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <img
-                src={`http://localhost:5000/uploads/${employee.userId.profileImage}`}
+                src={`${BACKEND_URL}/uploads/${employee.userId.profileImage}`}
                 className="rounded-full border w-72 h-72"
                 alt="profileImage"
               />
