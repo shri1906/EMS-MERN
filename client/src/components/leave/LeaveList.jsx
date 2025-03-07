@@ -48,7 +48,7 @@ const LeaveList = () => {
         <input
           type="text"
           placeholder="Search..."
-          className="px-4 py-1 border rounded"
+          className="px-4 mt-2 py-1 border rounded"
         />
         {user.role === "employee" && (
           <Link
@@ -60,44 +60,46 @@ const LeaveList = () => {
         )}
       </div>
 
-      <div className="mt-6">
+      <div className="mt-4">
         {loading ? (
           <p className="text-center text-lg font-semibold">Loading...</p>
         ) : leaves.length === 0 ? (
           <p className="text-center text-lg font-semibold">No leaves found.</p>
         ) : (
-          <table className="text-sm text-left text-gray-500">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 border border-gray-200">
-              <tr>
-                <th className="py-3">SNo</th>
-                <th className="py-3">Leave Type</th>
-                <th className="px-6 py-3">From</th>
-                <th className="px-6 py-3">To</th>
-                <th className="px-6 py-3">Description</th>
-                <th className="px-6 py-3">Applied Date</th>
-                <th className="px-6 py-3">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {leaves.map((leave, idx) => (
-                <tr key={idx} className="bg-white border-b">
-                  <td className="px-6 py-3">{sno++}</td>
-                  <td className="px-6 py-3">{leave.leaveType}</td>
-                  <td className="px-6 py-3">
-                    {new Date(leave.startDate).toLocaleDateString()}
-                  </td>
-                  <td className="px-6 py-3">
-                    {new Date(leave.endDate).toLocaleDateString()}
-                  </td>
-                  <td className="px-6 py-3">{leave.reason}</td>
-                  <td className="px-6 py-3">
-                    {new Date(leave.appliedAt).toLocaleDateString()}
-                  </td>
-                  <td className="px-6 py-3">{leave.status}</td>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm text-left text-gray-500">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50 border border-gray-200">
+                <tr>
+                  <th className="py-3">SNo</th>
+                  <th className="py-3">Leave Type</th>
+                  <th className="px-6 py-3">From</th>
+                  <th className="px-6 py-3">To</th>
+                  <th className="px-6 py-3">Description</th>
+                  <th className="px-6 py-3">Applied Date</th>
+                  <th className="px-6 py-3">Status</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {leaves.map((leave, idx) => (
+                  <tr key={idx} className="bg-white border-b">
+                    <td className="px-6 py-3">{sno++}</td>
+                    <td className="px-6 py-3">{leave.leaveType}</td>
+                    <td className="px-6 py-3">
+                      {new Date(leave.startDate).toLocaleDateString()}
+                    </td>
+                    <td className="px-6 py-3">
+                      {new Date(leave.endDate).toLocaleDateString()}
+                    </td>
+                    <td className="px-6 py-3">{leave.reason}</td>
+                    <td className="px-6 py-3">
+                      {new Date(leave.appliedAt).toLocaleDateString()}
+                    </td>
+                    <td className="px-6 py-3">{leave.status}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
     </div>

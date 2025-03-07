@@ -34,7 +34,9 @@ export const columns = [
   {
     name: "Action",
     cell: (row) => row.action,
-    center: "true"
+    width:"35%",
+    center:"true"
+    
   },
 ];
 
@@ -82,28 +84,28 @@ export const EmployeeButtons = ({ Id }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex space-x-3">
+    <div className="flex flex-wrap justify-center gap-2 md:flex-nowrap">
       <button
-        className="px-3 py-1 bg-cyan-600 text-white rounded"
+        className="px-3 py-1 bg-cyan-600 text-white rounded whitespace-nowrap"
         onClick={() => navigate(`/admin-dashboard/employees/${Id}`)}
       >
         View
       </button>
       <button
-        className="px-3 py-1 bg-blue-600 text-white rounded"
+        className="px-3 py-1 bg-blue-600 text-white rounded whitespace-nowrap"
         onClick={() => navigate(`/admin-dashboard/employees/edit/${Id}`)}
       >
         Edit
       </button>
       <button
-        className="px-3 py-1 bg-yellow-600 text-white rounded"
-        onClick={()=>navigate(`/admin-dashboard/employees/salary/${Id}`)}
+        className="px-3 py-1 bg-yellow-600 text-white rounded whitespace-nowrap"
+        onClick={() => navigate(`/admin-dashboard/employees/salary/${Id}`)}
       >
         Salary
       </button>
       <button
-        className="px-3 py-1 bg-red-600 text-white rounded"
-        onClick={()=>navigate(`/admin-dashboard/employees/leaves/${Id}`)}
+        className="px-3 py-1 bg-red-600 text-white rounded whitespace-nowrap"
+        onClick={() => navigate(`/admin-dashboard/employees/leaves/${Id}`)}
       >
         Leave
       </button>

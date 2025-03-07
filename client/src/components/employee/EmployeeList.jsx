@@ -72,11 +72,11 @@ const EmployeeList = () => {
           type="text"
           placeholder="Search By Name..."
           onChange={handleFilter}
-          className="px-4 py-2 border rounded w-full sm:w-72"
+          className="px-4 py-1 border rounded w-full sm:w-72"
         />
         <Link
           to="/admin-dashboard/add-employee"
-          className="px-4 py-2 text-white bg-cyan-600 rounded hover:bg-cyan-700 transition"
+          className="px-4 py-1 text-white bg-cyan-600 rounded hover:bg-cyan-700 transition"
         >
           Add New Employee
         </Link>
@@ -84,17 +84,16 @@ const EmployeeList = () => {
 
       {/* Data Table (Scrollable on Small Screens) */}
       <div className="pt-4 overflow-x-auto">
-  <div className="overflow-y-auto max-h-[400px]">
-    <DataTable
-      columns={columns}
-      data={filteredEmployees}
-      pagination
-      progressPending={loading}
-      responsive
-    />
-  </div>
-</div>
-
+        <div className="overflow-y-auto max-h-[400px]">
+          <DataTable
+            columns={columns}
+            data={filteredEmployees}
+            pagination
+            progressPending={loading}
+            responsive
+          />
+        </div>
+      </div>
     </div>
   );
 };
