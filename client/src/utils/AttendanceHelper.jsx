@@ -54,45 +54,45 @@ export const AttendanceHelper = ({ status, employeeId, statusChange }) => {
   };
 
   return (
-    <div className="flex space-x-8">
+    <div className="flex flex-wrap items-center gap-2">
       {status === null ? (
-        <div>
+        <>
           <button
-            className="px-4 py-2 text-white bg-green-500 rounded me-2"
+            className="px-3 py-1 text-white bg-green-500 rounded"
             onClick={() => markEmployee("Present", employeeId)}
           >
             Present
           </button>
           <button
-            className="px-4 py-2 text-white bg-red-500 rounded me-2"
+            className="px-3 py-1 text-white bg-red-500 rounded"
             onClick={() => markEmployee("Absent", employeeId)}
           >
             Absent
           </button>
           <button
-            className="px-4 py-2 text-white bg-gray-500 rounded me-2"
+            className="px-3 py-1 text-white bg-gray-500 rounded"
             onClick={() => markEmployee("Sick", employeeId)}
           >
             Sick
           </button>
           <button
-            className="px-4 py-2 text-white bg-yellow-500 rounded me-2"
+            className="px-3 py-1 text-white bg-yellow-500 rounded"
             onClick={() => markEmployee("Leave", employeeId)}
           >
             Leave
           </button>
-        </div>
+        </>
       ) : (
         <p
-          className={`w-20 text-center py-2 rounded ${
+          className={`w-20 text-center py-1 rounded ${
             status === "Present"
-              ? "bg-green-100"
+              ? "bg-green-100 text-green-700"
               : status === "Absent"
-              ? "bg-red-100"
+              ? "bg-red-100 text-red-700"
               : status === "Sick"
-              ? "bg-gray-100"
+              ? "bg-gray-100 text-gray-700"
               : status === "Leave"
-              ? "bg-yellow-100"
+              ? "bg-yellow-100 text-yellow-700"
               : ""
           }`}
         >

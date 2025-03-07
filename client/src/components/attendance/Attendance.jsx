@@ -25,12 +25,18 @@ const Attendance = () => {
       });
       if (response.data.success) {
         let sno = 1;
-        const data = await response.data.attendance.map((attend) => ({
+        const data = response.data.attendance.map((attend) => ({
           employeeId: attend.employeeId.employeeId,
           sno: sno++,
           department: attend.employeeId.department.dep_name,
           name: attend.employeeId.userId.name,
-          action: <AttendanceHelper status={attend.status} employeeId={attend.employeeId.employeeId} statusChange={statusChange} />,
+          action: (
+            <AttendanceHelper
+              status={attend.status}
+              employeeId={attend.employeeId.employeeId}
+              statusChange={statusChange}
+            />
+          ),
         }));
         setAttendance(data);
         setFilteredAttendance(data);
@@ -55,31 +61,47 @@ const Attendance = () => {
     setFilteredAttendance(records);
   };
 
-  if(!filteredAttendance){
-    return <div>Loading...</div>
+  if (!filteredAttendance) {
+    return <div className="text-center py-6">Loading...</div>;
   }
+
   return (
-    <div className="p-6">
+    <div className="p-4 md:p-6">
+      {/* Title */}
       <div className="text-center">
         <h3 className="text-2xl font-bold">Manage Attendance</h3>
       </div>
-      <div className="flex justify-between items-center mt-4">
+
+      {/* Controls */}
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center mt-4 gap-3">
         <input
           type="text"
           placeholder="Search by Employee ID"
           onChange={handleFilter}
-          className="px-4 py-1 border rounded"
+          className="px-4 py-2 border rounded w-full md:w-64"
         />
-        <p className="text-2xl">Mark Employees for: <span className="text-2xl underline">{new Date().toISOString().split('T')[0]}</span></p>
+        <p className="text-lg md:text-2xl text-center">
+          Mark Employees for:{" "}
+          <span className="text-lg md:text-2xl underline">
+            {new Date().toISOString().split("T")[0]}
+          </span>
+        </p>
         <Link
           to="/admin-dashboard/attendance-report"
-          className="px-4 py-1 text-white bg-cyan-600 rounded"
+          className="px-4 py-2 text-white bg-cyan-600 rounded text-center w-full md:w-auto"
         >
           Attendance Report
         </Link>
       </div>
-      <div className="mt-6">
-        <DataTable columns={columns} data={filteredAttendance} pagination />
+
+      {/* Table */}
+      <div className="mt-6 overflow-x-auto">
+        <DataTable
+          columns={columns}
+          data={filteredAttendance}
+          pagination
+          responsive
+        />
       </div>
     </div>
   );

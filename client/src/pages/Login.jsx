@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import toast from "react-hot-toast";
 import { BACKEND_URL } from "../utils/ApiHelper.jsx";
-import { FiMail, } from "react-icons/fi"; // Import Icons
-import { HiLockClosed, } from "react-icons/hi";
+import { FiMail } from "react-icons/fi"; // Import Icons
+import { HiLockClosed } from "react-icons/hi";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -41,11 +41,11 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-cyan-600 from-50% to-gray-100 to-50% px-4">
-      <div className="w-full max-w-md bg-white shadow-lg p-6 rounded-md">
-        <h2 className="font-anton text-2xl text-center text-gray-800 mb-6">
+      <div className="w-full max-w-sm bg-white shadow-lg p-6">
+        <h2 className="font-anton text-2xl text-center text-gray-800 mb-3">
           Employee Management System
         </h2>
-        <h3 className="text-xl font-semibold text-center mb-4">Login</h3>
+        <h3 className="text-xl font-bold text-center mb-4">Login</h3>
         <form onSubmit={handleSubmit}>
           {/* Email Input */}
           <div className="mb-4">
@@ -53,7 +53,7 @@ const Login = () => {
               Email
             </label>
             <div className="flex items-center border rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-cyan-500">
-              <FiMail className="text-gray-500" />
+              <FiMail className="text-gray-500 mr-2" size={18} />
               <input
                 type="email"
                 className="w-full px-2 focus:outline-none"
@@ -73,7 +73,7 @@ const Login = () => {
               Password
             </label>
             <div className="flex items-center border rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-cyan-500">
-                <HiLockClosed className="text-gray-500 " size={20} />
+              <HiLockClosed className="text-gray-500 mr-2" size={20} />
               <input
                 type="password"
                 className="w-full px-2 focus:outline-none"
