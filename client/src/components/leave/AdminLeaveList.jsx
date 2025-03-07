@@ -64,7 +64,7 @@ const AdminLeaveList = () => {
           <div className="text-center">
             <h3 className="text-2xl font-bold">Manage Leaves</h3>
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col sm:flex-row justify-between gap-2 mt-4">
             <input
               type="text"
               placeholder="Search..."
@@ -92,7 +92,7 @@ const AdminLeaveList = () => {
               </button>
             </div>
           </div>
-          <div className="mt-4">
+          <div className="mt-4 mb-5">
             <DataTable columns={columns} data={filteredLeaves} pagination />
           </div>
         </div>

@@ -58,58 +58,58 @@ const LeaveDetails = () => {
   return (
     <>
       {leave ? (
-        <div className="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md">
+        <div className="max-w-4xl mx-auto mt-10 mb-6 bg-white md:p-8 rounded-md shadow-md">
           <h2 className="text-2xl font-bold mb-8 text-center">Leave Details</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            <div className="flex justify-center">
               <img
                 src={`${BACKEND_URL}/uploads/${leave.employeeId.userId.profileImage}`}
-                className="rounded-full border w-72 h-72"
+                className="rounded-full border w-48 h-48 md:w-56 md:h-56 lg:w-72 lg:h-72 object-cover"
                 alt="profileImage"
               />
             </div>
-            <div>
-              <div className="flex space-x-3 mb-2">
-                <p className="text-lg font-bold">Name:</p>
-                <p className="font-medium mt-0.5">
+            <div className="space-y-4 text-sm md:text-base">
+              <div className="flex space-x-3">
+                <p className="font-bold">Name:</p>
+                <p className="font-medium">
                   {leave.employeeId.userId.name}
                 </p>
               </div>
-              <div className="flex space-x-3 mb-2">
-                <p className="text-lg font-bold">Employee ID:</p>
-                <p className="font-medium mt-0.5">
+              <div className="flex space-x-3">
+                <p className="font-bold">Employee ID:</p>
+                <p className="font-medium">
                   {leave.employeeId.employeeId}
                 </p>
               </div>
-              <div className="flex space-x-3 mb-2">
-                <p className="text-lg font-bold">Leave Type:</p>
-                <p className="font-medium mt-0.5">{leave.leaveType}</p>
+              <div className="flex space-x-3">
+                <p className="font-bold">Leave Type:</p>
+                <p className="font-medium">{leave.leaveType}</p>
               </div>
-              <div className="flex space-x-3 mb-2">
-                <p className="text-lg font-bold">Reason:</p>
-                <p className="font-medium mt-0.5">{leave.reason}</p>
+              <div className="flex space-x-3">
+                <p className="font-bold">Reason:</p>
+                <p className="font-medium">{leave.reason}</p>
               </div>
-              <div className="flex space-x-3 mb-2">
-                <p className="text-lg font-bold">Department:</p>
-                <p className="font-medium mt-0.5">
+              <div className="flex space-x-3">
+                <p className="font-bold">Department:</p>
+                <p className="font-medium">
                   {leave.employeeId.department.dep_name}
                 </p>
               </div>
 
-              <div className="flex space-x-3 mb-2">
-                <p className="text-lg font-bold">Start Date:</p>
-                <p className="font-medium mt-0.5">
+              <div className="flex space-x-3">
+                <p className="font-bold">Start Date:</p>
+                <p className="font-medium">
                   {new Date(leave.startDate).toLocaleDateString()}
                 </p>
               </div>
-              <div className="flex space-x-3 mb-2">
-                <p className="text-lg font-bold">End Date:</p>
-                <p className="font-medium mt-0.5">
+              <div className="flex space-x-3">
+                <p className="font-bold">End Date:</p>
+                <p className="font-medium">
                   {new Date(leave.endDate).toLocaleDateString()}
                 </p>
               </div>
-              <div className="flex space-x-3 mb-2">
-                <p className="text-lg font-bold">
+              <div className="flex space-x-3">
+                <p className="font-bold">
                   {leave.status === "Pending" ? "Action:" : "Status:"}
                 </p>
                 {leave.status === "Pending" ? (
@@ -128,7 +128,7 @@ const LeaveDetails = () => {
                     </button>
                   </div>
                 ) : (
-                  <p className="font-medium mt-0.5">{leave.status}</p>
+                  <p className="font-medium">{leave.status}</p>
                 )}
               </div>
             </div>

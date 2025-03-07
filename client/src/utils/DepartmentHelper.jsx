@@ -7,14 +7,20 @@ export const columns = [
   {
     name: "S No",
     selector: (row) => row.sno,
+    sortable: true,
+    width: "80px",
   },
   {
     name: "Department Name",
     selector: (row) => row.dep_name,
+    sortable: true,
+    wrap: true, // Ensures long names wrap properly
   },
   {
     name: "Action",
     selector: (row) => row.action,
+    center: true,
+    width: "200px", // Ensure enough space for buttons
   },
 ];
 
@@ -29,7 +35,7 @@ export const DepartmentButtons = ({ _id, onDepartmentDelete }) => {
           `${BACKEND_URL}/api/department/${id}`,
           {
             headers: {
-              Authorization: `Beare ${localStorage.getItem("token")}`,
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           }
         );
@@ -43,16 +49,17 @@ export const DepartmentButtons = ({ _id, onDepartmentDelete }) => {
       }
     }
   };
+
   return (
-    <div className="flex space-x-3">
+    <div className="flex flex-wrap gap-2 justify-center min-w-[100px]">
       <button
-        className="px-3 py-1 bg-cyan-600 text-white rounded"
+        className="px-3 py-1 bg-cyan-600 text-white rounded hover:bg-cyan-700 transition"
         onClick={() => navigate(`/admin-dashboard/department/${_id}`)}
       >
         Edit
       </button>
       <button
-        className="px-3 py-1 bg-red-600 text-white rounded"
+        className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition"
         onClick={() => handleDelete(_id)}
       >
         Delete

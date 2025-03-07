@@ -67,20 +67,24 @@ const DepartmentList = () => {
           <div className="text-center">
             <h3 className="text-2xl font-bold">Manage Department</h3>
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-2 mt-4">
+            {/* Search Input */}
             <input
               type="text"
               placeholder="Search By Department..."
-              className="px-4 py-1 border rounded"
+              className="w-full sm:w-auto px-4 py-1 border rounded"
               onChange={filterDepartments}
             />
+
+            {/* Add Department Button */}
             <Link
               to="/admin-dashboard/add-department"
-              className="px-4 py-1 text-white bg-cyan-600 rounded"
+              className="w-full sm:w-auto px-4 py-1 text-white bg-cyan-600 rounded text-center"
             >
               Add New Department
             </Link>
           </div>
+
           <div className="mt-5">
             <DataTable
               columns={columns}
