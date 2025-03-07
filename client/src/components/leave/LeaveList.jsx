@@ -53,7 +53,7 @@ const LeaveList = () => {
         {user.role === "employee" && (
           <Link
             to="/employee-dashboard/add-leave"
-            className="px-4 py-1 text-white bg-cyan-600 rounded"
+            className="px-4 py-1 mt-1 text-white bg-cyan-600 rounded"
           >
             Add Leave
           </Link>

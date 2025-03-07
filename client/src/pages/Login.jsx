@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import toast from "react-hot-toast";
 import { BACKEND_URL } from "../utils/ApiHelper.jsx";
-import { FiMail, FiLock } from "react-icons/fi"; // Import Icons
+import { FiMail, } from "react-icons/fi"; // Import Icons
+import { HiLockClosed, } from "react-icons/hi";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -72,7 +73,7 @@ const Login = () => {
               Password
             </label>
             <div className="flex items-center border rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-cyan-500">
-              <FiLock className="text-gray-500" />
+                <HiLockClosed className="text-gray-500 " size={20} />
               <input
                 type="password"
                 className="w-full px-2 focus:outline-none"
