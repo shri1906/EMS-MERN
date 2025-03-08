@@ -17,7 +17,7 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
     <>
       {/* Mobile Toggle Button */}
       <button
-        className="text-white text-2xl p-2 fixed top-2 left-2 z-50 bg-cyan-600 rounded-md md:hidden"
+        className="text-white text-2xl px-2 py-1 fixed top-2 left-2 z-50 bg-cyan-600 rounded-md md:hidden"
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? <FaTimes /> : <FaBars />}

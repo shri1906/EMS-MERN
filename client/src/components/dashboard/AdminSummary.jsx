@@ -74,7 +74,7 @@ const AdminSummary = () => {
         </div>
       </div>
 
-      <div className="mt-12">
+      <div className="mt-12 mb-10">
         <h3 className="text-3xl font-bold text-center">Leave Details</h3>
         <p className="text-gray-600 mt-2 text-center">
           Track leave requests and approvals

@@ -84,27 +84,27 @@ export const EmployeeButtons = ({ Id }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-wrap justify-center gap-2 md:flex-nowrap">
+    <div className="flex flex-nowrap gap-2 overflow-x-auto w-full">
       <button
-        className="px-3 py-1 bg-cyan-600 text-white rounded whitespace-nowrap"
+        className="px-2 sm:px-3 py-1 bg-cyan-600 text-white text-xs md:text-sm rounded whitespace-nowrap"
         onClick={() => navigate(`/admin-dashboard/employees/${Id}`)}
       >
         View
       </button>
       <button
-        className="px-3 py-1 bg-blue-600 text-white rounded whitespace-nowrap"
+        className="px-2 sm:px-3 py-1 bg-blue-600 text-white text-xs md:text-sm rounded whitespace-nowrap"
         onClick={() => navigate(`/admin-dashboard/employees/edit/${Id}`)}
       >
         Edit
       </button>
       <button
-        className="px-3 py-1 bg-yellow-600 text-white rounded whitespace-nowrap"
+        className="px-2 sm:px-3 py-1 bg-yellow-600 text-white text-xs md:text-sm rounded whitespace-nowrap"
         onClick={() => navigate(`/admin-dashboard/employees/salary/${Id}`)}
       >
         Salary
       </button>
       <button
-        className="px-3 py-1 bg-red-600 text-white rounded whitespace-nowrap"
+        className="px-2 sm:px-3 py-1 bg-red-600 text-white text-xs md:text-sm rounded whitespace-nowrap"
         onClick={() => navigate(`/admin-dashboard/employees/leaves/${Id}`)}
       >
         Leave
@@ -112,4 +112,3 @@ export const EmployeeButtons = ({ Id }) => {
     </div>
   );
 };
-
