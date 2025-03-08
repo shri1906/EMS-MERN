@@ -44,7 +44,7 @@ const AdminSummary = () => {
     );
   }
   return (
-    <div className="p-6">
+    <div className="p-6 mb-10">
       <div>
         <h3 className="text-4xl font-extrabold tracking-wide text-center">
           Dashboard Overview
