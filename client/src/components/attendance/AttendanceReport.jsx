@@ -82,7 +82,7 @@ const AttendanceReport = () => {
 
       {/* Loading State */}
       {loading ? (
-        <div className="text-center mt-6">Loading...</div>
+        <div className="text-center text-lg font-semibold">Loading...</div>
       ) : (
         Object.entries(report).map(([date, records]) => (
           <div key={date} className="mt-6">

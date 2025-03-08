@@ -172,7 +172,7 @@ const AddSalary = () => {
           </form>
         </div>
       ) : (
-        <div>Loading.....</div>
+        <div className="text-center text-lg font-semibold">Loading.....</div>
       )}
     </>
   );

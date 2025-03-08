@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext"
 const RoleBaseRoutes = ({children, requiredRole}) => {
     const {user, loading} = useAuth()
     if(loading){
-     return <div>Loading...</div>
+     return <div className="text-center text-lg font-semibold">Loading...</div>
     }
     if(!requiredRole.includes(user.role)){
       return  <Navigate to="/unauthorized" />

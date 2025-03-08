@@ -1,19 +1,3 @@
-// import Navbar from "../components/dashboard/Navbar"
-// import { Outlet } from "react-router-dom"
-
-// const EmployeeDashboard = () => {
-//   return (
-//     <div className="flex">
-//       <Sidebar />
-//       <div className="flex-1 ml-64 bg-gray-100 h-screen">
-//         <Navbar />
-//         <Outlet />
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default EmployeeDashboard
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/employeeDashboard/Sidebar"
 import Navbar from "../components/dashboard/Navbar";
@@ -21,6 +5,7 @@ import { useState } from "react";
 
 const AdminDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const currentYear = new Date().getFullYear();
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -37,6 +22,9 @@ const AdminDashboard = () => {
           <Outlet />
         </div>
       </div>
+      <footer className="bg-gray-800 text-white text-center py-2 text-sm w-full fixed bottom-0">
+        © {currentYear} All Rights Reserved
+      </footer>
     </div>
   );
 };

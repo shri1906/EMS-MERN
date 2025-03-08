@@ -110,7 +110,7 @@ const monthlyAttendanceReport = async (req, res) => {
         };
       }
       // Store first letter of the status (P, A, S, L)
-      employeeData[empId].attendance[dateKey] = record.status.charAt(0);
+      employeeData[empId].attendance[dateKey] = record.status ? record.status.charAt(0) : "-";
     });
 
     return res

@@ -46,7 +46,9 @@ const ViewSalary = () => {
   return (
     <>
       {filteredSalaries === null ? (
-        <div>Loading...</div>
+          <div className="text-center text-lg font-semibold">
+          Loading...
+        </div>
       ) : (
         <div className="p-5">
           <div className="text-center">

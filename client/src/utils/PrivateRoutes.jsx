@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 const PrivateRoutes = ({ children }) => {
   const { user, loading } = useAuth();
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="text-center text-lg font-semibold">Loading...</div>;
   }
   return user ? children : <Navigate to="/login" />;
 };

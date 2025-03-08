@@ -61,7 +61,7 @@ const DepartmentList = () => {
   return (
     <>
       {loading ? (
-        <div>Loading...</div>
+        <div className="text-center text-lg font-semibold">Loading...</div>
       ) : (
         <div className="p-6">
           <div className="text-center">
