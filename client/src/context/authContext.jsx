@@ -3,6 +3,7 @@ import axios from "axios";
 import { BACKEND_URL } from "../utils/ApiHelper";
 
 const userContext = createContext();
+
 const AuthContext = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
